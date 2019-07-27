@@ -1,0 +1,278 @@
+@import 'mixins';
+@import 'afterreset';
+
+.user-main-page-header {
+  height: 42px;
+  color: rgb(255,255,255);
+  font-family: $main-font-family;
+  background-color: #6e3f85;
+  border-bottom: 1px solid #35204f;
+  display: flex;
+  align-items: center;
+  .user-main-page-header-container {
+    width: 75%;
+    margin-left: 150px;
+    .user-main-page-header-search {
+      display: flex;
+      align-items: center;
+      height: 28px;
+      width: 448px;
+      input {
+        width: 402px;
+        height: 26px;
+        padding-left: 5px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        border-top: 1px solid #3c1053;
+        border-left: 1px solid #3c1053;
+        border-bottom: 1px solid #3c1053;
+        border-right: none;
+      }
+      button {
+        width: 46px;
+        height: 26px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border-top: 1px solid #3c1053;
+        border-right: 1px solid #3c1053;
+        border-bottom: 1px solid #3c1053;
+        border-left: none;
+        background-color: rgb(245,246,247);
+        i {
+          color: rgb(75,79,86);
+          font-size: 14px;
+        }
+      }
+    }
+    .user-main-page-header-menu {
+      height: 28px;
+      display: flex;
+      align-items: center;
+      .user-header-profile {
+        .user-main-page-header-image {
+          width: 24px;
+          height: 24px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        .user-header-profile-name {
+          float: right;
+          line-height: 26px;
+          padding-left: 6px;
+        }
+      }
+      ul {
+        li {
+          color: rgb(255,255,255);
+          font-weight: bold;
+          font-size: 12px;
+          vertical-align: middle;
+          display: inline-block;
+          border-right: 1px solid rgba(0,0,0,0.2);
+          list-style-type: none;
+          padding: 0 12px;
+          &:nth-of-type(5), &:nth-of-type(6), &:nth-of-type(8), &:nth-of-type(9) {
+            border-right: none;
+          }
+          &:last-of-type {
+            margin-bottom: 6px;
+          }
+          i {
+            font-size: 19px;
+            color: #3c1053;
+          }
+        }
+      }
+    }
+  }
+}
+
+.user-main-page-content-background {
+  background-color: #e9ebee;
+  padding-top: 12px;
+  .user-main-page-content-container {
+    width: 68%;
+    margin-left: 150px;
+    font-family: $main-font-family;
+    .user-main-page-left-side-bar {
+      .user-main-page-content-profile {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        .user-main-page-content-image {
+          width: 24px;
+          height: 24px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        .user-main-page-content-profile-name {
+          display: inline-block;
+          padding-left: 7px;
+          color: rgb(0,0,0);
+        }
+      }
+      .user-main-page-content-sidebar-menu {
+        font-family: $main-font-family;
+        ul {
+          li {
+            list-style-type: none;
+            font-size: 14px;
+            color: rgb(0,0,0);
+            height: 28px;
+            &:first-of-type {
+              font-weight: bold;
+            }
+            &:last-of-type {
+              font-size: 12px;
+              color: #808080;
+            }
+          }
+        }
+        .main-page-sidebar-divider {
+          border-bottom: 3px solid #c0c0c0;
+          margin-bottom: 8px;
+        }
+        .main-page-sidebar-divider-last {
+          border-bottom: 1px solid #c0c0c0;
+          margin-bottom: 8px;
+        }
+      }
+    }
+    .user-main-page-middle-bar {
+      margin-left: 20px;
+      .main-page-create-post {
+        width: 85%;
+        font-family: $main-font-family;
+        border-radius: 4px;
+        position: relative;
+        .main-page-create-post-header {
+          position: relative;
+          height: 33px;
+          padding-left: 10px;
+          background-color: #f5f6f7;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          border-top: 1px solid rgb(221,223,226);
+          border-left: 1px solid rgb(221,223,226);
+          border-right: 1px solid rgb(221,223,226);
+          border-bottom: 1px solid rgb(221,223,226);
+          h5 {
+            color: rgb(75,79,86);
+            font-size: 12px;
+            line-height: 33px;
+            font-weight: bold;
+          }
+          .main-page-create-post-exit {
+            position: absolute;
+            right: 5px;
+            top: 0;
+            border: none;
+            height: 31px;
+            color: rgb(211,211,211);
+            background-color: #f5f6f7;
+            font-size: 20px;
+            i {
+              vertical-align:middle;
+            }
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+        .main-page-create-post-inner {
+          font-family: $main-font-family;
+          position: relative;
+          .main-page-create-post-form {
+            height: 120px;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            background-color: rgb(255,255,255);
+            border-bottom: 1px solid rgb(221,223,226);
+            border-left: 1px solid rgb(221,223,226);
+            border-right: 1px solid rgb(221,223,226);
+            padding-left: 13px;
+            .main-page-create-post-footer {
+              padding-bottom: 8px;
+              .main-page-create-post-footer-container {
+                width: 95%;
+                margin: auto;
+                .create-post-divider {
+                  border-bottom: 1px solid rgb(221,223,226);
+                  margin-bottom: 8px;
+                }
+                button {
+                  width: 30%;
+                  height: 32px;
+                  border-radius: 18px;
+                  border: none;
+                  background-color: #f5f6f7;
+                  color: rgb(75,79,86);
+                  text-align: left;
+                  font-size: 12px;
+                  font-weight: bold;
+                  padding-left: 10px;
+                  i {
+                    font-size: 20px;
+                    vertical-align: middle;
+                    color: #6e3f85;
+                  }
+                  span {
+                    margin-left: 5px;
+                    vertical-align: middle;
+                  }
+                }
+              }
+            }
+            .main-page-create-post-image {
+              position:absolute;
+              border-radius: 50%;
+              width: 40px;
+              height: 40px;
+              object-fit: cover;
+              vertical-align: middle;
+              top: 15px;
+              left: 13px;
+            }
+            input {
+              border: none;
+              padding: 15px 12px 14px 51px;
+              width: 448px;
+              height: 71px;
+              font-size: 14px;
+              &:focus {
+                outline: none;
+              }
+            }
+            .main-page-create-post-focus {
+              background-color: #f5f6f7;
+              padding-bottom: 8px;
+              padding-top: 10px;
+              margin-left: -14px;
+              margin-right: -1px;
+              border-bottom-right-radius: 4px;
+              border-bottom-left-radius: 4px;
+              border-bottom: 1px solid rgb(221,223,226);
+              border-left: 1px solid rgb(221,223,226);
+              border-right: 1px solid rgb(221,223,226);
+              .main-page-create-post-submit {
+                width: 95%;
+                display: block;
+                margin: auto;
+                background-color: rgba(147,112,219,0.5);
+                height: 28px;
+                border: none;
+                border-radius: 2px;
+                color: rgb(255,255,255);
+                padding: 0 16px;
+              }
+              visibility: hidden;
+            }
+          }
+        }
+      }
+    }
+    .user-main-page-right-side-bar {
+    }
+  }
+}

@@ -63,6 +63,7 @@
         display: flex;
         align-items: center;
         input {
+          font-family: $main-font-family;
           display: block;
           width: 50px;
           height: 24px;
@@ -71,6 +72,7 @@
           background-color: #ad5389;
           margin-top: 16px;
           border: 1px solid #3c1053;
+          border-radius: 2px;
           &:hover {
             background-color: #3c1053;
           }
@@ -113,7 +115,7 @@
     }
     input {
       &:nth-of-type(3), &:nth-of-type(4) {
-        width: 49.4%;
+        width: 49.3%;
         display: inline-block;
         margin: 3px 0;
       }
@@ -123,7 +125,7 @@
       margin: 6px 0;
       border-radius: 5px;
       border: 1px solid #ccd0d5;
-      color: #808080;
+      color: rgb(0,0,0);
       font-size: 18px;
     }
     select {

@@ -1,0 +1,107 @@
+<header class="user-main-page-header">
+  <div class="user-main-page-header-container">
+    <div class="wrap-for-flex">
+      <div class="row">
+        <div class="user-main-page-header-search column-5">
+          <input type="text" placeholder="Search"></input>
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="user-main-page-header-menu column-6">
+          <ul>
+            <% if @user.image == nil %>
+            <% @user.image = "default-profile.png" %>
+            <% end %>
+            <li id="header-user-name">
+              <a>
+                <div class="user-header-profile">
+                  <%= image_tag(@user.image, class: "user-main-page-header-image") %>
+                  <div class="user-header-profile-name">
+                    <%= @user.firstname %>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Find friends</a></li>
+            <li><a href="#">Create</a></li>
+            <li><a href="#"><i class="fas fa-user-friends"></i></a></li>
+            <li><a href="#"><i class="fab fa-facebook-messenger"></i></a></li>
+            <li><a href="#"><i class="fas fa-bell"></i></a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
+            <li><a href="#"><i class="fas fa-sort-down"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="user-main-page-content-background">
+  <div class="user-main-page-content-container">
+    <div class="row">
+      <div class="user-main-page-left-side-bar column-2">
+        <div class="user-main-page-content-profile">
+          <%= image_tag(@user.image, class: "user-main-page-content-image") %>
+          <div class="user-main-page-content-profile-name"><%= @user.firstname %> <%= @user.lastname %></div>
+        </div>
+        <div class="user-main-page-content-sidebar-menu">
+          <ul>
+            <li><a href="#">Newsfeed</a></li>
+            <li><a href="#">Timeline</a></li>
+            <li><a href="#">All Users</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Friends</a></li>
+            <li><a href="#">Friend Requests</a></li>
+            <li><a href="#">Find Friends</a></li>
+            <li><a href="#">Notifications</a></li>
+            <div class="main-page-sidebar-divider"></div>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact/Help</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <div class="main-page-sidebar-divider"></div>
+            <li><a href="#">Log Out</a></li>
+            <div class="main-page-sidebar-divider-last"></div>
+            <li>Purplebook &copy; 2019</li>
+          </ul>
+        </div>
+      </div>
+      <div class="user-main-page-middle-bar column-7">
+        <div class="main-page-create-post">
+          <div class="main-page-create-post-header">
+            <h5>Create post</h5>
+          </div>
+          <div class="main-page-create-post-inner">
+            <div class="main-page-create-post-form">
+              <%= form_tag("#", method: "post") do %>
+              <%= image_tag(@user.image, class: "main-page-create-post-image") %>
+              <%= text_field_tag(:post_text, nil, placeholder: "What's on your mind, " + @user.firstname + "?") %>
+              <div class="main-page-create-post-footer">
+                <div class="main-page-create-post-footer-container">
+                  <div class="create-post-divider"></div>
+                  <button>
+                    <i class="far fa-image"></i>
+                    <span>Photos</span>
+                  </button>
+                  <button>
+                  <i class="fas fa-user-tag"></i>
+                  <span>Tag a friend</span>
+                  </button>
+                  <button>
+                  <i class="fas fa-laugh"></i>
+                  <span>Emotion</span>
+                  </button>
+                </div>
+              </div>
+              <div class="main-page-create-post-focus">
+                <%= submit_tag("Share", class: "main-page-create-post-submit") %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="user-main-page-right-side-bar column-3">
+      </div>
+    </div>
+  </div>
+</div>
