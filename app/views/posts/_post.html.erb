@@ -1,5 +1,6 @@
 <li id="post-<%= post.id %>">
   <div class="user-main-page-post">
+    <%= hidden_field_tag("post-id", post.id) %>
     <div class="user-main-page-post-header">
       <%= image_tag(@user.image) %>
       <div class="user-main-page-header-after-img">
@@ -25,17 +26,23 @@
         <div class="user-main-page-post-buttons">
           <div class="user-main-page-post-like-button column-6">
             <div class="user-main-page-post-buttons-wrapper">
-              <i class="far fa-thumbs-up"></i><button>Like</button>
+              <i class="far fa-thumbs-up"></i> <span>Like</span>
             </div>
           </div>
           <div class="user-main-page-post-comment-button column-6">
             <div class="user-main-page-post-buttons-wrapper">
-              <i class="far fa-comment-alt"></i><button>Comment</button>
+              <i class="far fa-comment-alt"></i> <span>Comment</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="user-main-page-post-comments">
+    </div>
+    <div class="user-main-page-post-comments">
+      <div class="user-main-page-post-create-comment">
+        <%= image_tag(@user.image) %>
+        <div class="user-main-page-post-create-comment-input-wrap">
+          <%= text_field_tag(:content, nil, placeholder: "Write a comment...") %>
+        </div>
       </div>
     </div>
   </div>

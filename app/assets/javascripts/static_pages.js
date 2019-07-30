@@ -3,9 +3,9 @@ document.addEventListener("turbolinks:load", function() {
 })
 
 function validateSingup() {
-  let signupDiv = document.getElementsByClassName("signup")[0];
-  let signupInputs = signupDiv.querySelectorAll("input");
-  let regexForEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+  const signupDiv = document.getElementsByClassName("signup")[0];
+  const signupInputs = signupDiv.querySelectorAll("input");
+  const regexForEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
   signupInputs.forEach(function (element) {
       element.addEventListener("blur", function() {
         if (element.value == "" ||

@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   get '/logincheck', to: 'static_pages#logincheck'
 
   post '/users/:id/posts', to: 'posts#create'
+
+  get '/users/:id/current_user', to: 'users#current_user'
 end

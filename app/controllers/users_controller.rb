@@ -21,4 +21,9 @@ class UsersController < ApplicationController
   def delete
   end
 
+  def current_user
+    @user = User.find(params[:id])
+    render json: {id: @user.id}
+  end
+
 end
