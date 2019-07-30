@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   delete '/users/:id', to: 'users#delete'
 
   get '/logincheck', to: 'static_pages#logincheck'
+
+  post '/users/:id/posts', to: 'posts#create'
 end

@@ -1,6 +1,5 @@
 document.addEventListener("turbolinks:load", function() {
   let createPostDiv = document.getElementsByClassName("main-page-create-post")[0];
-
   createPostDiv.addEventListener("click", enlargeAndFocus);
 
   function enlargeAndFocus() {
@@ -9,7 +8,7 @@ document.addEventListener("turbolinks:load", function() {
     createPostFormText.style.fontSize = "24px";
 
     let createPostFocus = document.getElementsByClassName("main-page-create-post-focus")[0];
-    createPostFocus.style.visibility = "visible";
+    createPostFocus.style.display = "block";
 
     let createPostForm = createPostDiv.getElementsByClassName("main-page-create-post-form")[0];
     createPostDiv.style.borderBottomLeftRadius = "0";
@@ -26,14 +25,22 @@ document.addEventListener("turbolinks:load", function() {
     exitButton.appendChild(exitIcon);
     createPostHeader.appendChild(exitButton);
 
+    let submitButton = document.getElementsByClassName("main-page-create-post-submit")[0];
+    submitButton.hoverBackground = "rgb(75,0,130)";
+    submitButton.normalBackground = "rgb(147,112,219)";
     let activateButtonInterval = setInterval(function() {
       if (createPostFormText.value != "") {
-        let submitButton = document.getElementsByClassName("main-page-create-post-submit")[0];
-        submitButton.style.backgroundColor = "rgb(147,112,219)";
-        submitButton.style.pointerEvents = "auto";
-        submitButton.addEventListener("mouseover", function () { submitButton.style.backgroundColor = "rgb(75,0,130)"});
-        submitButton.addEventListener("mouseleave", function () { submitButton.style.backgroundColor = "rgb(147,112,219)"});
-        clearInterval(activateButtonInterval);
+        if (submitButton.style.pointerEvents != "auto") {
+          submitButton.style.pointerEvents = "auto";
+          submitButton.style.backgroundColor = "rgb(147,112,219)";
+          submitButton.addEventListener("mouseover", changeBackgroundColorHover);
+          submitButton.addEventListener("mouseleave", changeBackgroundColorNormal);
+        }
+      } else {
+        submitButton.style.pointerEvents = "none";
+        submitButton.style.backgroundColor = "rgba(147,112,219,0.5)";
+        submitButton.removeEventListener("mouseover", changeBackgroundColorHover);
+        submitButton.removeEventListener("mouseleave", changeBackgroundColorNormal);
       }
     },500)
 
@@ -42,13 +49,22 @@ document.addEventListener("turbolinks:load", function() {
     exitButton.addEventListener("click", undoEnlargeAndFocus);
   }
 
+  function changeBackgroundColorHover(element) {
+    element.target.style.backgroundColor = element.target.hoverBackground;
+  }
+
+  function changeBackgroundColorNormal(element) {
+    element.target.style.backgroundColor = element.target.normalBackground;
+  }
+
   function undoEnlargeAndFocus(event) {
     event.stopPropagation();
     let createPostFormText = document.getElementsByClassName("main-page-create-post-form")[0].querySelectorAll("input")[2];
     createPostFormText.style.fontSize = "14px";
+    createPostFormText.value = "";
 
     let createPostFocus = document.getElementsByClassName("main-page-create-post-focus")[0];
-    createPostFocus.style.visibility = "hidden";
+    createPostFocus.style.display = "none";
 
     let createPostForm = createPostDiv.getElementsByClassName("main-page-create-post-form")[0];
     createPostDiv.style.borderBottomLeftRadius = "4px";
@@ -60,12 +76,8 @@ document.addEventListener("turbolinks:load", function() {
     let exitButton = document.getElementsByClassName("main-page-create-post-exit")[0];
     createPostHeader.removeChild(exitButton);
 
-    let submitButton = document.getElementsByClassName("main-page-create-post-submit")[0];
-    submitButton.style.pointerEvents = "none";
-
     createPostDiv.style.boxShadow = "none";
 
     createPostDiv.addEventListener("click", enlargeAndFocus);
-
   }
 })

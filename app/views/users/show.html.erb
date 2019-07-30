@@ -72,7 +72,7 @@
           </div>
           <div class="main-page-create-post-inner">
             <div class="main-page-create-post-form">
-              <%= form_tag("#", method: "post") do %>
+              <%= form_tag("/users/" + @user.id.to_s + "/posts", method: "post") do %>
               <%= image_tag(@user.image, class: "main-page-create-post-image") %>
               <%= text_field_tag(:post_text, nil, placeholder: "What's on your mind, " + @user.firstname + "?") %>
               <div class="main-page-create-post-footer">
@@ -99,6 +99,9 @@
             </div>
           </div>
         </div>
+        <ul class="main-page-posts">
+          <%= render @posts %>
+        </ul>
       </div>
       <div class="user-main-page-right-side-bar column-3">
       </div>

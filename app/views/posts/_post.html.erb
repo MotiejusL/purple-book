@@ -1,0 +1,42 @@
+<li id="post-<%= post.id %>">
+  <div class="user-main-page-post">
+    <div class="user-main-page-post-header">
+      <%= image_tag(@user.image) %>
+      <div class="user-main-page-header-after-img">
+        <div class="user-main-page-header-after-img-wrapper">
+          <h5><%= @user.firstname %> <%= @user.lastname %></h5>
+          <h6><%= time_ago_in_words(post.created_at) %></h6>
+        </div>
+      </div>
+    </div>
+    <div class="user-main-page-post-inner">
+      <p><%= post.content %></p>
+    </div>
+    <div class="user-main-page-post-footer">
+      <div class="row">
+        <div class="user-main-page-post-likes">
+          <i class="far fa-thumbs-up"></i> 1
+        </div>
+        <div class="user-main-page-post-comments-count">
+          1 Comments
+        </div>
+      </div>
+      <div class="row">
+        <div class="user-main-page-post-buttons">
+          <div class="user-main-page-post-like-button column-6">
+            <div class="user-main-page-post-buttons-wrapper">
+              <i class="far fa-thumbs-up"></i><button>Like</button>
+            </div>
+          </div>
+          <div class="user-main-page-post-comment-button column-6">
+            <div class="user-main-page-post-buttons-wrapper">
+              <i class="far fa-comment-alt"></i><button>Comment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="user-main-page-post-comments">
+      </div>
+    </div>
+  </div>
+</li>
