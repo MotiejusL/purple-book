@@ -53,15 +53,20 @@ body {
       display: flex;
       align-items: center;
       .user-header-profile {
+        height: 18px;
+        position: relative;
         .user-main-page-header-image {
+          position: absolute;
+          top: -25%;
           width: 24px;
           height: 24px;
           object-fit: cover;
           border-radius: 50%;
         }
         .user-header-profile-name {
+          margin-left: 24px;
           float: right;
-          line-height: 26px;
+          line-height: 18px;
           padding-left: 6px;
         }
       }
@@ -73,6 +78,7 @@ body {
           vertical-align: middle;
           display: inline-block;
           border-right: 1px solid rgba(0,0,0,0.2);
+          line-height: 18px;
           list-style-type: none;
           padding: 0 12px;
           &:nth-of-type(5), &:nth-of-type(6), &:nth-of-type(8), &:nth-of-type(9) {

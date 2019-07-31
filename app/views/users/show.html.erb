@@ -8,15 +8,12 @@
         </div>
         <div class="user-main-page-header-menu column-6">
           <ul>
-            <% if @user.image == nil %>
-            <% @user.image = "default-profile.png" %>
-            <% end %>
             <li id="header-user-name">
               <a>
                 <div class="user-header-profile">
                   <%= image_tag(@user.image, class: "user-main-page-header-image") %>
                   <div class="user-header-profile-name">
-                    <%= @user.firstname %>
+                    <span><%= @user.firstname %></span>
                   </div>
                 </div>
               </a>

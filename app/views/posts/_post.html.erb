@@ -16,10 +16,10 @@
     <div class="user-main-page-post-footer">
       <div class="row">
         <div class="user-main-page-post-likes">
-          <i class="far fa-thumbs-up"></i> 1
+          <i class="far fa-thumbs-up"></i> <span> <%= post.post_likes.count %></span>
         </div>
         <div class="user-main-page-post-comments-count">
-          1 Comments
+          <span><%= post.comments.count %></span><span> Comments</span>
         </div>
       </div>
       <div class="row">
