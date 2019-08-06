@@ -8,7 +8,40 @@ document.addEventListener("turbolinks:load", function() {
     postLikeButton.postId = postId;
     postLikeButton.post = element;
 
-    postLikeButton.addEventListener("click", likeItem);
+    Rails.ajax({
+      url: window.location.href + '/current_user',
+      type: 'GET',
+      beforeSend: function () {
+        return true;
+      },
+      success: function (response) {
+        currentUserId = response.id;
+        Rails.ajax({
+          url: "/posts/" + postId + "/checkIfLiked",
+          type: "GET",
+          data: "[userId]=" + currentUserId + "",
+          beforeSend: function() {
+            return true;
+          },
+          success: function(response) {
+            if (response.liked == true) {
+              const buttonIcon = postLikeButton.querySelector("i");
+              const buttonSpan = postLikeButton.querySelector("span");
+              buttonIcon.style.color = "rgb(138,43,226)";
+              buttonSpan.style.color = "rgb(138,43,226)";
+              postLikeButton.addEventListener("click", unLikeItem);
+            } else {
+              postLikeButton.addEventListener("click", likeItem);
+            }
+          },
+          error: function(response) {
+            alert(response);
+          }
+        })
+      },
+      error: function (response) {
+      }
+    })
   })
 
   function likeItem(element) {
@@ -19,32 +52,18 @@ document.addEventListener("turbolinks:load", function() {
     const postLikeButton = element.currentTarget;
     const postLikesCount = postLikeButton.post.getElementsByClassName("user-main-page-post-likes")[0].querySelector("span");
     Rails.ajax({
-      url: window.location.href + '/current_user',
-      type: 'GET',
+      url: "/posts/" + postLikeButton.postId + "/likes",
+      type: "POST",
+      data: '[userId]=' + currentUserId + '',
       beforeSend: function () {
         return true;
       },
-      success: function (response) {
-        currentUserId = response.id;
-        Rails.ajax({
-          url: "/posts/" + postLikeButton.postId + "/likes",
-          type: "POST",
-          data: '[userId]=' + currentUserId + '',
-          beforeSend: function () {
-            return true;
-          },
-          success: function (res) {
-            postLikesCount.innerHTML = parseInt(postLikesCount.innerHTML) + 1;
-            postLikeButton.removeEventListener("click", likeItem);
-            postLikeButton.addEventListener("click", unLikeItem);
-          },
-          error: function (res) {
-
-          }
-        })
+      success: function (res) {
+        postLikesCount.innerHTML = parseInt(postLikesCount.innerHTML) + 1;
+        postLikeButton.removeEventListener("click", likeItem);
+        postLikeButton.addEventListener("click", unLikeItem);
       },
-      error: function (response) {
-
+      error: function (res) {
       }
     })
   }

@@ -24,4 +24,13 @@ class PostLikesController < ApplicationController
     @like.destroy
     render json: nil, status: :ok
   end
+
+  def check_if_liked_by_user
+    @postLike = PostLike.find_by(post_id: params[:id], user_id: params[:userId])
+    if @postLike != nil
+      render json: {liked: true}
+    else
+      render json: {liked: false}
+    end
+  end
 end

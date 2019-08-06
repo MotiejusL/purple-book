@@ -33,4 +33,8 @@ Rails.application.routes.draw do
 
   delete '/comments/:id/likes', to: 'comment_likes#delete'
 
+  get '/posts/:id/checkIfLiked', to: 'post_likes#check_if_liked_by_user'
+
+  get '/comments/:id/checkIfLiked', to: 'comment_likes#check_if_liked_by_user'
+
 end

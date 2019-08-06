@@ -2,68 +2,141 @@ document.addEventListener("turbolinks:load", function() {
   const posts = document.getElementsByClassName("user-main-page-post");
   let currentUserId;
 
-  Array.from(posts).forEach(function (element, index) {
-    const postComments = element.getElementsByClassName("user-main-page-post-comment");
-    const postId = element.querySelectorAll("input")[0].value;
-    postComments.postId = postId;
-    postComments.post = element;
-
-    postCommentLike.addEventListener("click", likeComment);
+  Rails.ajax({
+    url: window.location.href + '/current_user',
+    type: 'GET',
+    beforeSend: function () {
+      return true;
+    },
+    success: function (response) {
+      currentUserId = response.id;
+    },
+    error: function (response) {
+    }
   })
 
+  Array.from(posts).forEach(function (element, index) {
+    const postCommentButton = element.getElementsByClassName("user-main-page-post-comment-button")[0];
+    const postCommentsCount = element.getElementsByClassName("user-main-page-post-comments-count")[0];
+    const postId = element.querySelectorAll("input")[0].value;
+    postCommentButton.post = element;
+    postCommentsCount.post = element;
+    postCommentButton.postId = postId;
+    postCommentsCount.postId = postId;
+    postCommentButton.addEventListener("click", addListenersforComments);
+    postCommentsCount.addEventListener("click", addListenersforComments);
+  })
+
+  function addListenersforComments(element) {
+      let buttonClicked = element.currentTarget;
+      setTimeout(function() {
+        let postComments = buttonClicked.post.getElementsByClassName("main-page-post-comment");
+        if (postComments.length != 0) {
+        Array.from(postComments).forEach(function (ele, ind) {
+          Rails.ajax({
+            url: "/posts/" + buttonClicked.postId + "/comments",
+            type: "GET",
+            data: "[userId]=" + currentUserId + "",
+            beforeSend: function() {
+              return true;
+            },
+            success: function(response) {
+              Rails.ajax({
+                url: "/comments/" + response.comments[ind].id + "/checkIfLiked",
+                type: "GET",
+                data: "[userId]=" + currentUserId + "",
+                beforeSend: function() {
+                  return true;
+                },
+                success: function(res) {
+                  const commentLikeButton = ele.getElementsByClassName("main-page-post-comment-like")[0];
+                  if (res.liked == true) {
+                    commentLikeButton.style.fontWeight = "bold";
+                    commentLikeButton.addEventListener("click", unLikeComment);
+                  } else {
+                    commentLikeButton.addEventListener("click", likeComment);
+                  }
+                  commentLikeButton.postId = buttonClicked.postId;
+                  commentLikeButton.index = ind;
+                },
+                error: function(res) {
+                  alert(res);
+                }
+              })
+            },
+            error: function(response) {
+              alert(response);
+            }
+          })
+          })
+        }
+      }, 500)
+  }
+
   function likeComment(element) {
-    const postComments = element.currentTarget;
+    const commentToLikeIndex = element.currentTarget.index;
+    const currentElement = element.currentTarget;
     Rails.ajax({
-      url: window.location.href + '/current_user',
-      type: 'GET',
-      beforeSend: function () {
+      url: "/posts/" + currentElement.postId + "/comments",
+      type: "GET",
+      data: "[userId]=" + currentUserId + "",
+      beforeSend: function() {
         return true;
       },
       success: function (response) {
-        currentUserId = response.id;
         Rails.ajax({
-          url: "/posts/" + postLikeButton.postId + "/comments",
-          type: "GET",
-          beforeSend: function () {
+          url: "/comments/" + response.comments[commentToLikeIndex].id + "/likes",
+          type: "POST",
+          data: "[userId]=" + currentUserId + "",
+          beforeSend: function() {
             return true;
           },
           success: function (res) {
-            Array.from(postComments).forEach(function (element, index)) {
-              targetCommentLikeButton = element.getElementsByClassName("main-page-post-comment-like");
-              targetCommentLikeButton.addEventListener("click", )
-            }
+            currentElement.style.fontWeight = "bold";
+            currentElement.removeEventListener("click", likeComment);
+            currentElement.addEventListener("click", unLikeComment);
           },
           error: function (res) {
-
+            alert(res);
           }
         })
       },
       error: function (response) {
-
+        alert(response);
       }
     })
   }
 
-  function unLikeItem(element) {
-    const buttonIcon = element.currentTarget.querySelector("i");
-    const buttonSpan = element.currentTarget.querySelector("span");
-    buttonIcon.style.color = "#696969";
-    buttonSpan.style.color = "#696969";
-    const postLikeButton = element.currentTarget;
-    const postLikesCount = postLikeButton.post.getElementsByClassName("user-main-page-post-likes")[0].querySelector("span");
+  function unLikeComment(element) {
+    const commentToLikeIndex = element.currentTarget.index;
+    const currentElement = element.currentTarget;
     Rails.ajax({
-      url: "/posts/" + postLikeButton.postId + "/likes",
-      type: "DELETE",
-      data: '[userId]=' + currentUserId + '',
-      beforeSend: function () {
+      url: "/posts/" + currentElement.postId + "/comments",
+      type: "GET",
+      data: "[userId]=" + currentUserId + "",
+      beforeSend: function() {
         return true;
       },
-      success: function (res) {
-        postLikesCount.innerHTML = parseInt(postLikesCount.innerHTML) - 1;
-        postLikeButton.removeEventListener("click", unLikeItem);
-        postLikeButton.addEventListener("click", likeItem);
+      success: function (response) {
+        Rails.ajax({
+          url: "/comments/" + response.comments[commentToLikeIndex].id + "/likes",
+          type: "DELETE",
+          data: "[userId]=" + currentUserId + "",
+          beforeSend: function() {
+            return true;
+          },
+          success: function (res) {
+            currentElement.style.fontWeight = "normal";
+            currentElement.removeEventListener("click", unLikeComment);
+            currentElement.addEventListener("click", likeComment);
+          },
+          error: function (res) {
+            alert(res);
+          }
+        })
       },
-      error: function (res) {
+      error: function (response) {
+        alert(response);
       }
     })
   }
