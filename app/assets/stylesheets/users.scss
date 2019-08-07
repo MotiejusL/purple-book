@@ -21,6 +21,7 @@ body {
       align-items: center;
       height: 28px;
       width: 448px;
+      margin-right: 22px;
       input {
         width: 402px;
         height: 26px;
@@ -42,6 +43,9 @@ body {
         border-bottom: 1px solid #3c1053;
         border-left: none;
         background-color: rgb(245,246,247);
+        &:hover {
+          background-color: rgb(237,239,241);
+        }
         i {
           color: rgb(75,79,86);
           font-size: 14px;
@@ -53,20 +57,18 @@ body {
       display: flex;
       align-items: center;
       .user-header-profile {
-        height: 18px;
-        position: relative;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .user-main-page-header-image {
-          position: absolute;
-          top: -25%;
           width: 24px;
           height: 24px;
           object-fit: cover;
           border-radius: 50%;
+          margin-bottom: 2px;
         }
         .user-header-profile-name {
-          margin-left: 24px;
-          float: right;
-          line-height: 18px;
           padding-left: 6px;
         }
       }
@@ -78,9 +80,11 @@ body {
           vertical-align: middle;
           display: inline-block;
           border-right: 1px solid rgba(0,0,0,0.2);
-          line-height: 18px;
+          line-height: 24px;
           list-style-type: none;
-          padding: 0 12px;
+          height: 24px;
+          margin-right: -4px;
+          padding: 0 14px;
           &:nth-of-type(5), &:nth-of-type(6), &:nth-of-type(8), &:nth-of-type(9) {
             border-right: none;
           }
@@ -88,8 +92,32 @@ body {
             margin-bottom: 6px;
           }
           i {
+            vertical-align: middle;
             font-size: 19px;
             color: #3c1053;
+            &:hover {
+              color: #1e042b;
+            }
+          }
+          &:nth-of-type(-n+4) {
+            padding: 0;
+          }
+          .background {
+            height: 28px;
+            position: relative;
+            top: -2px;
+            padding: 0 14px;
+            a {
+              position: relative;
+              top: 2px;
+            }
+            &:hover {
+              background-color: rgba(75,0,130,0.35);
+              border-radius: 2px;
+            }
+          }
+          .first-background {
+            padding: 0 14px 0 0;
           }
         }
       }
@@ -104,10 +132,10 @@ body {
     font-family: $main-font-family;
     .user-main-page-left-side-bar {
       .user-main-page-content-profile {
-        height: 32px;
+        height: 28px;
         display: flex;
         align-items: center;
-        margin-bottom: 12px;
+        padding-bottom: 2px;
         .user-main-page-content-image {
           width: 20px;
           height: 20px;
@@ -124,16 +152,28 @@ body {
         font-family: $main-font-family;
         ul {
           li {
+            padding-left: 5px;
             list-style-type: none;
             font-size: 14px;
             color: rgb(0,0,0);
             height: 28px;
+            line-height: 28px;
             &:first-of-type {
-              font-weight: bold;
+              margin-bottom: 5px;
             }
             &:last-of-type {
               font-size: 12px;
               color: #808080;
+            }
+            &:hover:not(:last-of-type) {
+              border: 1px solid rgb(221,223,226);
+              background-color: #f5f6f7;
+              border-radius: 2px;
+              position: relative;
+              top: -1px;
+              bottom: -1px;
+              right: -1px;
+              left: -1px;
             }
           }
         }
@@ -244,7 +284,7 @@ body {
             input {
               border: none;
               padding: 15px 12px 14px 51px;
-              width: 448px;
+              width: 100%;
               height: 71px;
               font-size: 14px;
               &:focus {

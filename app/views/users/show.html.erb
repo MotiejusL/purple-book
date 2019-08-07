@@ -9,18 +9,20 @@
         <div class="user-main-page-header-menu column-6">
           <ul>
             <li id="header-user-name">
-              <a>
-                <div class="user-header-profile">
-                  <%= image_tag(@user.image, class: "user-main-page-header-image") %>
-                  <div class="user-header-profile-name">
-                    <span><%= @user.firstname %></span>
+              <div class="background first-background">
+                <a>
+                  <div class="user-header-profile">
+                    <%= image_tag(@user.image, class: "user-main-page-header-image") %>
+                    <div class="user-header-profile-name">
+                      <span><%= @user.firstname %></span>
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
             </li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Find friends</a></li>
-            <li><a href="#">Create</a></li>
+            <li><div class="background"><a href="#">Home</a></div></li>
+            <li><div class="background"><a href="#">Find friends</a></div></li>
+            <li><div class="background"><a href="#">Create</a></div></li>
             <li><a href="#"><i class="fas fa-user-friends"></i></a></li>
             <li><a href="#"><i class="fab fa-facebook-messenger"></i></a></li>
             <li><a href="#"><i class="fas fa-bell"></i></a></li>
@@ -36,12 +38,14 @@
   <div class="user-main-page-content-container">
     <div class="row">
       <div class="user-main-page-left-side-bar column-2">
-        <div class="user-main-page-content-profile">
-          <%= image_tag(@user.image, class: "user-main-page-content-image") %>
-          <div class="user-main-page-content-profile-name"><%= @user.firstname %> <%= @user.lastname %></div>
-        </div>
         <div class="user-main-page-content-sidebar-menu">
           <ul>
+            <li>
+              <div class="user-main-page-content-profile">
+                <%= image_tag(@user.image, class: "user-main-page-content-image") %>
+                <div class="user-main-page-content-profile-name"><%= @user.firstname %> <%= @user.lastname %></div>
+              </div>
+            </li>
             <li><a href="#">Newsfeed</a></li>
             <li><a href="#">Timeline</a></li>
             <li><a href="#">All Users</a></li>
