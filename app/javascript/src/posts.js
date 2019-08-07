@@ -1,5 +1,7 @@
-document.addEventListener("turbolinks:load", function() {
+import { promiseOfCurrentUser } from './users'
+
   const posts = document.getElementsByClassName("user-main-page-post");
+  let currentUserId;
 
   Array.from(posts).forEach(function (element, index) {
     const postCreateCommentButton = element.getElementsByClassName("user-main-page-post-comment-button")[0];
@@ -61,34 +63,24 @@ document.addEventListener("turbolinks:load", function() {
   }
 
   function addComment(element, postCommentsDiv) {
-    Rails.ajax({
-      url: window.location.href + '/current_user',
-      type: 'GET',
-      beforeSend: function () {
-        return true;
-      },
-      success: function(response) {
-        Rails.ajax({
-          url: "/posts/" + element.target.postId + "/comments",
-          type: "POST",
-          data: '[userId]=' + response.id + '&[content]=' + element.target.value + '',
-          beforeSend: function () {
-            return true;
-          },
-          success: function (response) {
-            getAllComments(element.target, postCommentsDiv);
-            const postCommentsCount = element.target.post.getElementsByClassName("user-main-page-post-comments-count")[0].querySelectorAll("span")[0];
-            postCommentsCount.innerHTML = parseInt(postCommentsCount.innerHTML) + 1;
-            element.target.value = "";
-          },
-          error: function (response) {
-
-          }
-        })
-      },
-      error: function(response) {
-        alert(response);
-      }
+    promiseOfCurrentUser().then(function(userId) {
+      currentUserId = userId;
+      Rails.ajax({
+        url: "/posts/" + element.target.postId + "/comments",
+        type: "POST",
+        data: '[userId]=' + currentUserId + '&[content]=' + element.target.value + '',
+        beforeSend: function () {
+          return true;
+        },
+        success: function (response) {
+          getAllComments(element.target, postCommentsDiv);
+          const postCommentsCount = element.target.post.getElementsByClassName("user-main-page-post-comments-count")[0].querySelectorAll("span")[0];
+          postCommentsCount.innerHTML = parseInt(postCommentsCount.innerHTML) + 1;
+          element.target.value = "";
+        },
+        error: function (response) {
+        }
+      })
     })
   }
 
@@ -107,7 +99,6 @@ document.addEventListener("turbolinks:load", function() {
           allComments.appendChild(comment);
         })
         postCommentsDiv.insertBefore(allComments, postCommentsDiv.lastElementChild);
-        postCommentsDiv.style.display = "block";
       },
       error: function (response) {
       }
@@ -155,4 +146,3 @@ document.addEventListener("turbolinks:load", function() {
     createAgo.classList.add("main-page-post-comment-create-ago");
     return comment;
   }
-})

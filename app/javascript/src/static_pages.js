@@ -1,6 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
-  validateSingup();
-})
+validateSingup();
 
 function validateSingup() {
   const signupDiv = document.getElementsByClassName("signup")[0];

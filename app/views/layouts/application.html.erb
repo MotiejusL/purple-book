@@ -4,13 +4,13 @@
     <title>PurpleBook</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <script src="https://kit.fontawesome.com/017de41723.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Heebo|Ruda&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <%= yield %>
+    <%= javascript_pack_tag 'application' %>
   </body>
 </html>

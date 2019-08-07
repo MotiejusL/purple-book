@@ -25,12 +25,16 @@ class CommentLikesController < ApplicationController
     render json: nil, status: :ok
   end
 
-  def check_if_liked_by_user
-    @commentLike = CommentLike.find_by(comment_id: params[:id], user_id: params[:userId])
-    if @commentLike != nil
-      render json: {liked: true}
-    else
-      render json: {liked: false}
+  def check_likes
+    comments = Comment.where(post_id: params[:postId])
+    likedCommentsIds = []
+    comments.each do |comment|
+      comment.comment_likes.each do |like|
+        if like.user.id == params[:userId].to_i
+          likedCommentsIds.push(comment.id)
+        end
+      end
     end
+    render json: {likedCommentsIds: likedCommentsIds, commentsIds: comments.ids}
   end
 end

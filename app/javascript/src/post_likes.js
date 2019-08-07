@@ -1,6 +1,7 @@
-document.addEventListener("turbolinks:load", function() {
-  const posts = document.getElementsByClassName("user-main-page-post");
+import { promiseOfCurrentUser } from './users'
+
   let currentUserId;
+  const posts = document.getElementsByClassName("user-main-page-post");
 
   Array.from(posts).forEach(function (element, index) {
     const postLikeButton = element.getElementsByClassName("user-main-page-post-like-button")[0];
@@ -8,39 +9,30 @@ document.addEventListener("turbolinks:load", function() {
     postLikeButton.postId = postId;
     postLikeButton.post = element;
 
-    Rails.ajax({
-      url: window.location.href + '/current_user',
-      type: 'GET',
-      beforeSend: function () {
-        return true;
-      },
-      success: function (response) {
-        currentUserId = response.id;
-        Rails.ajax({
-          url: "/posts/" + postId + "/checkIfLiked",
-          type: "GET",
-          data: "[userId]=" + currentUserId + "",
-          beforeSend: function() {
-            return true;
-          },
-          success: function(response) {
-            if (response.liked == true) {
-              const buttonIcon = postLikeButton.querySelector("i");
-              const buttonSpan = postLikeButton.querySelector("span");
-              buttonIcon.style.color = "rgb(138,43,226)";
-              buttonSpan.style.color = "rgb(138,43,226)";
-              postLikeButton.addEventListener("click", unLikeItem);
-            } else {
-              postLikeButton.addEventListener("click", likeItem);
-            }
-          },
-          error: function(response) {
-            alert(response);
+    promiseOfCurrentUser().then(function(userId) {
+      currentUserId = userId;
+      Rails.ajax({
+        url: "/posts/" + postId + "/checkIfLiked",
+        type: "GET",
+        data: "[userId]=" + currentUserId + "",
+        beforeSend: function() {
+          return true;
+        },
+        success: function(response) {
+          if (response.liked == true) {
+            const buttonIcon = postLikeButton.querySelector("i");
+            const buttonSpan = postLikeButton.querySelector("span");
+            buttonIcon.style.color = "rgb(138,43,226)";
+            buttonSpan.style.color = "rgb(138,43,226)";
+            postLikeButton.addEventListener("click", unLikeItem);
+          } else {
+            postLikeButton.addEventListener("click", likeItem);
           }
-        })
-      },
-      error: function (response) {
-      }
+        },
+        error: function(response) {
+          alert(response);
+        }
+      })
     })
   })
 
@@ -91,4 +83,3 @@ document.addEventListener("turbolinks:load", function() {
       }
     })
   }
-})

@@ -1,4 +1,3 @@
-document.addEventListener("turbolinks:load", function() {
   const createPostDiv = document.getElementsByClassName("main-page-create-post")[0];
   createPostDiv.addEventListener("click", enlargeAndFocus);
 
@@ -80,4 +79,28 @@ document.addEventListener("turbolinks:load", function() {
 
     createPostDiv.addEventListener("click", enlargeAndFocus);
   }
-})
+
+  function requestCurrentUser() {
+    return new Promise(resolve => {
+      Rails.ajax({
+        async: false,
+        url: window.location.href + '/current_user',
+        type: 'GET',
+        beforeSend: function () {
+          return true;
+        },
+        success: function (response) {
+          resolve(response.id);
+        },
+        error: function (response) {
+        }
+      })
+    })
+  }
+
+  async function promiseOfCurrentUser() {
+    let id = await requestCurrentUser();
+    return id;
+  }
+
+  export { promiseOfCurrentUser };

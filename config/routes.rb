@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   get '/posts/:id/checkIfLiked', to: 'post_likes#check_if_liked_by_user'
 
-  get '/comments/:id/checkIfLiked', to: 'comment_likes#check_if_liked_by_user'
+  get '/comments/:postId/check_likes', to: 'comment_likes#check_likes'
+
+  get '/users/:id/friend_requests', to: 'friend_requests#index'
 
 end
