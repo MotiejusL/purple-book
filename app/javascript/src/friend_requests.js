@@ -1,6 +1,7 @@
 import { promiseOfCurrentUser } from './users'
 
-  const friendRequestButton = document.getElementsByClassName("user-main-page-header-friend-requests")[0];
+  const friendRequestButton = document.getElementsByClassName("user-main-page-header-friend-requests")[0].querySelector("i");
+  const friendRequestsDiv = document.getElementsByClassName("user-main-page-header-friend-requests")[0];
   const headerDiv = document.getElementsByClassName("user-main-page-header")[0];
   let currentUserId;
 
@@ -8,7 +9,7 @@ import { promiseOfCurrentUser } from './users'
 
   function showFriendRequests(element) {
     const friendRequestButton = element.currentTarget;
-    friendRequestButton.querySelector("i").style.color = "rgb(255,255,255)";
+    friendRequestButton.style.color = "rgb(255,255,255)";
 
     const arrowForRequestsContainer = document.createElement("div");
     arrowForRequestsContainer.classList.add("arrow-for-requests-container");
@@ -17,10 +18,7 @@ import { promiseOfCurrentUser } from './users'
     friendRequestsContainer.classList.add("headerPopUpContainer");
 
     addFriendRequestsHeader(friendRequestsContainer);
-    loadAllRequests(friendRequestsContainer);
-
-    friendRequestButton.appendChild(friendRequestsContainer);
-    friendRequestButton.appendChild(arrowForRequestsContainer);
+    loadAllRequests(friendRequestsContainer, friendRequestButton, arrowForRequestsContainer);
 
     friendRequestButton.container = friendRequestsContainer;
     friendRequestButton.arrow = arrowForRequestsContainer;
@@ -31,10 +29,10 @@ import { promiseOfCurrentUser } from './users'
 
   function hideFriendRequests(element) {
     const friendRequestButton = element.currentTarget;
-    friendRequestButton.querySelector("i").style.color = "#3c1053";
+    friendRequestButton.style.color = "#3c1053";
 
-    friendRequestButton.removeChild(friendRequestButton.container);
-    friendRequestButton.removeChild(friendRequestButton.arrow);
+    friendRequestsDiv.removeChild(friendRequestButton.container);
+    friendRequestsDiv.removeChild(friendRequestButton.arrow);
 
     friendRequestButton.removeEventListener("click", hideFriendRequests);
     friendRequestButton.addEventListener("click", showFriendRequests);
@@ -56,7 +54,7 @@ import { promiseOfCurrentUser } from './users'
     friendRequestsContainer.appendChild(friendRequestsHeader);
   }
 
-  function loadAllRequests(friendRequestsContainer) {
+  function loadAllRequests(friendRequestsContainer, friendRequestButton, arrowForRequestsContainer) {
     promiseOfCurrentUser().then(function(userId) {
       Rails.ajax({
         url: "/users/" + userId + "/friend_requests",
@@ -68,6 +66,8 @@ import { promiseOfCurrentUser } from './users'
           response.friendRequestsUsers.forEach(function (element) {
             addRequest(element, friendRequestsContainer);
           })
+          friendRequestsDiv.appendChild(friendRequestsContainer);
+          friendRequestsDiv.appendChild(arrowForRequestsContainer);
         },
         error: function(response) {
           alert(response);
@@ -96,13 +96,54 @@ import { promiseOfCurrentUser } from './users'
     requestButtons.classList.add("user-main-page-request-buttons");
     const confirmButton = document.createElement("button");
     confirmButton.innerHTML = "Confirm";
+    confirmButton.requestContainer = requestContainer;
+    confirmButton.requestsContainer = friendRequestsContainer;
+    confirmButton.requestId = element.requestId;
+    confirmButton.addEventListener("click", confirmRequest);
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Delete";
+    deleteButton.requestContainer = requestContainer;
+    deleteButton.requestsContainer = friendRequestsContainer;
+    deleteButton.requestId = element.requestId;
+    deleteButton.addEventListener("click", deleteRequest);
     requestButtons.appendChild(confirmButton);
     requestButtons.appendChild(deleteButton);
 
     requestContainer.appendChild(requestProfile);
     requestContainer.appendChild(requestButtons);
     friendRequestsContainer.appendChild(requestContainer);
+  }
 
+  function confirmRequest(element) {
+    const buttonClicked = element.currentTarget;
+    Rails.ajax({
+      url: "/users/friend_requests/" + buttonClicked.requestId + "/accept",
+      type: "PUT",
+      beforeSend: function() {
+        return true;
+      },
+      success: function(response) {
+        buttonClicked.requestsContainer.removeChild(buttonClicked.requestContainer);
+      },
+      error: function(response) {
+        alert(response);
+      }
+    })
+  }
+
+  function deleteRequest(element) {
+    const buttonClicked = element.currentTarget;
+    Rails.ajax({
+      url: "/users/friend_requests/" + buttonClicked .requestId + "/delete",
+      type: "DELETE",
+      beforeSend: function() {
+        return true;
+      },
+      success: function(response) {
+        buttonClicked.requestsContainer.removeChild(buttonClicked.requestContainer);
+      },
+      error: function(response) {
+        alert(response);
+      }
+    })
   }

@@ -39,4 +39,8 @@ Rails.application.routes.draw do
 
   get '/users/:id/friend_requests', to: 'friend_requests#index'
 
+  put 'users/friend_requests/:id/accept', to: 'friend_requests#accept_request'
+
+  delete 'users/friend_requests/:id/delete', to: 'friend_requests#delete'
+
 end

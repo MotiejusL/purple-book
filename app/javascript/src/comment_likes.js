@@ -3,29 +3,13 @@ import { promiseOfCurrentUser } from './users'
   const posts = document.getElementsByClassName("user-main-page-post");
   let currentUserId;
 
-  Array.from(posts).forEach(function (element, index) {
-    const postCommentButton = element.getElementsByClassName("user-main-page-post-comment-button")[0];
-    const postCommentsCount = element.getElementsByClassName("user-main-page-post-comments-count")[0];
-    const postId = element.querySelectorAll("input")[0].value;
-    const postCommentsDiv = element.getElementsByClassName("user-main-page-post-comments")[0];
-    postCommentButton.post = element;
-    postCommentsCount.post = element;
-    postCommentButton.postId = postId;
-    postCommentsCount.postId = postId;
-    postCommentButton.addEventListener("click", addListenersforComments);
-    postCommentsCount.addEventListener("click", addListenersforComments);
-  })
-
-  function addListenersforComments(element) {
-      const postCommentsDiv = element.currentTarget.post.getElementsByClassName("user-main-page-post-comments")[0];
-      let buttonClicked = element.currentTarget;
+  function addListenersforComments(postId, post, postCommentsDiv) {
       promiseOfCurrentUser().then(function(userId) {
         currentUserId = userId;
-        setTimeout(function() {
-          let postComments = buttonClicked.post.getElementsByClassName("main-page-post-comment");
+          let postComments = post.getElementsByClassName("main-page-post-comment");
           if (postComments.length != 0) {
                 Rails.ajax({
-                  url: "/comments/" + buttonClicked.postId + "/check_likes",
+                  url: "/comments/" + postId + "/check_likes",
                   type: "GET",
                   data: "[userId]=" + currentUserId,
                   beforeSend: function() {
@@ -40,7 +24,7 @@ import { promiseOfCurrentUser } from './users'
                     } else {
                       commentLikeButton.addEventListener("click", likeComment);
                     }
-                    commentLikeButton.postId = buttonClicked.postId;
+                    commentLikeButton.postId = postId;
                     commentLikeButton.index = ind;
                     if (ind == postComments.length - 1) {
                       postCommentsDiv.style.display = "block";
@@ -51,9 +35,18 @@ import { promiseOfCurrentUser } from './users'
                     alert(res);
                   }
                 })
+          } else {
+            postCommentsDiv.style.display = "block";
+            buttonClicked.removeEventListener("click", addListenersforComments);
+            buttonClicked.addEventListener("click", displayNoneComments);
           }
-        }, 100)
       })
+  }
+
+  function displayNoneComments(element) {
+    element.currentTarget.commentsDiv.style.display = "none";
+    element.currentTarget.removeEventListener("click", displayNoneComments);
+    element.currentTarget.addEventListener("click", addListenersforComments);
   }
 
   function likeComment(element) {
@@ -123,3 +116,5 @@ import { promiseOfCurrentUser } from './users'
       }
     })
   }
+
+  export { addListenersforComments, displayNoneComments, likeComment, unLikeComment }

@@ -1,4 +1,5 @@
 import { promiseOfCurrentUser } from './users'
+import { addListenersforComments, displayNoneComments, likeComment, unLikeComment } from './comment_likes'
 
   const posts = document.getElementsByClassName("user-main-page-post");
   let currentUserId;
@@ -20,7 +21,7 @@ import { promiseOfCurrentUser } from './users'
 
   function showComments(element) {
     const postCommentsDiv = element.currentTarget.post.getElementsByClassName("user-main-page-post-comments")[0];
-    getAllComments(element.currentTarget, postCommentsDiv);
+    getAllComments(element.currentTarget.postId, element.currentTarget.post, postCommentsDiv);
 
     const postCommentInput = postCommentsDiv.getElementsByClassName("user-main-page-post-create-comment-input-wrap")[0].querySelectorAll("input")[0];
     postCommentInput.postId = element.currentTarget.postId;
@@ -63,17 +64,18 @@ import { promiseOfCurrentUser } from './users'
   }
 
   function addComment(element, postCommentsDiv) {
+    let targetInput = element.currentTarget;
     promiseOfCurrentUser().then(function(userId) {
       currentUserId = userId;
       Rails.ajax({
-        url: "/posts/" + element.target.postId + "/comments",
+        url: "/posts/" + targetInput.postId + "/comments",
         type: "POST",
         data: '[userId]=' + currentUserId + '&[content]=' + element.target.value + '',
         beforeSend: function () {
           return true;
         },
         success: function (response) {
-          getAllComments(element.target, postCommentsDiv);
+          getAllComments(targetInput.postId, targetInput.post, postCommentsDiv);
           const postCommentsCount = element.target.post.getElementsByClassName("user-main-page-post-comments-count")[0].querySelectorAll("span")[0];
           postCommentsCount.innerHTML = parseInt(postCommentsCount.innerHTML) + 1;
           element.target.value = "";
@@ -84,9 +86,9 @@ import { promiseOfCurrentUser } from './users'
     })
   }
 
-  function getAllComments(element, postCommentsDiv) {
+  function getAllComments(postId, post, postCommentsDiv) {
     Rails.ajax({
-      url: "/posts/" + element.postId + "/comments",
+      url: "/posts/" + postId + "/comments",
       type: "GET",
       beforeSend: function() {
         return true;
@@ -99,6 +101,7 @@ import { promiseOfCurrentUser } from './users'
           allComments.appendChild(comment);
         })
         postCommentsDiv.insertBefore(allComments, postCommentsDiv.lastElementChild);
+        addListenersforComments(postId, post, postCommentsDiv);
       },
       error: function (response) {
       }
