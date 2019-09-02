@@ -1,15 +1,16 @@
 import { promiseOfCurrentUser } from './users'
 
-  const friendRequestButton = document.getElementsByClassName("user-main-page-header-friend-requests")[0].querySelector("i");
-  const friendRequestsDiv = document.getElementsByClassName("user-main-page-header-friend-requests")[0];
-  const headerDiv = document.getElementsByClassName("user-main-page-header")[0];
-  let currentUserId;
+  if (document.getElementsByClassName("user-main-page-header-friend-requests")[0] != undefined) {
+    const friendRequestButton = document.getElementsByClassName("user-main-page-header-friend-requests")[0].querySelector("i");
+    const friendRequestsDiv = document.getElementsByClassName("user-main-page-header-friend-requests")[0];
+    const headerDiv = document.getElementsByClassName("user-main-page-header")[0];
+    let currentUserId;
 
-  friendRequestButton.addEventListener("click", showFriendRequests);
+    friendRequestButton.addEventListener("click", showFriendRequests);
 
   function showFriendRequests(element) {
     const friendRequestButton = element.currentTarget;
-    friendRequestButton.style.color = "rgb(255,255,255)";
+    friendRequestButton.classList.add("active");
 
     const arrowForRequestsContainer = document.createElement("div");
     arrowForRequestsContainer.classList.add("arrow-for-requests-container");
@@ -29,7 +30,7 @@ import { promiseOfCurrentUser } from './users'
 
   function hideFriendRequests(element) {
     const friendRequestButton = element.currentTarget;
-    friendRequestButton.style.color = "#3c1053";
+    friendRequestButton.classList.remove("active");
 
     friendRequestsDiv.removeChild(friendRequestButton.container);
     friendRequestsDiv.removeChild(friendRequestButton.arrow);
@@ -147,3 +148,5 @@ import { promiseOfCurrentUser } from './users'
       }
     })
   }
+
+}

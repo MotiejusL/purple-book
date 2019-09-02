@@ -1,0 +1,33 @@
+<div class="main-page-create-post">
+  <div class="main-page-create-post-header">
+    <h5>Create post</h5>
+  </div>
+  <div class="main-page-create-post-inner">
+    <div class="main-page-create-post-form">
+      <%= form_tag("/users/" + @user.id.to_s + "/posts", method: "post") do %>
+      <%= image_tag(@user.image, class: "main-page-create-post-image") %>
+      <%= text_field_tag(:post_text, nil, placeholder: "What's on your mind, " + @user.firstname + "?") %>
+      <div class="main-page-create-post-footer">
+        <div class="main-page-create-post-footer-container">
+          <div class="create-post-divider"></div>
+          <button>
+            <i class="far fa-image"></i>
+            <span>Photos</span>
+          </button>
+          <button>
+          <i class="fas fa-user-tag"></i>
+          <span>Tag a friend</span>
+          </button>
+          <button>
+          <i class="fas fa-laugh"></i>
+          <span>Emotion</span>
+          </button>
+        </div>
+      </div>
+      <div class="main-page-create-post-focus">
+        <%= submit_tag("Share", class: "main-page-create-post-submit") %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

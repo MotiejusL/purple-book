@@ -1,5 +1,7 @@
   const createPostDiv = document.getElementsByClassName("main-page-create-post")[0];
-  createPostDiv.addEventListener("click", enlargeAndFocus);
+  if (createPostDiv != null) {
+      createPostDiv.addEventListener("click", enlargeAndFocus);
+  }
 
   function enlargeAndFocus() {
     createPostDiv.removeEventListener("click", enlargeAndFocus);
@@ -84,7 +86,7 @@
     return new Promise(resolve => {
       Rails.ajax({
         async: false,
-        url: window.location.href + '/current_user',
+        url: '/users/current_user',
         type: 'GET',
         beforeSend: function () {
           return true;

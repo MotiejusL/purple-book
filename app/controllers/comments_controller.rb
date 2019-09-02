@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:id])
-    @user = User.find(params[:userId])
+    @user = User.find(session[:current_user_id])
     @comment = @post.comments.build(content: params[:content], user_id: @user.id)
     if @comment.save
       render json: nil, status: :ok

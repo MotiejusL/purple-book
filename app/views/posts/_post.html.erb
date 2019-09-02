@@ -2,10 +2,10 @@
   <div class="user-main-page-post">
     <%= hidden_field_tag("post-id", post.id) %>
     <div class="user-main-page-post-header">
-      <%= image_tag(@user.image) %>
+      <%= image_tag(User.find(post.user_id).image) %>
       <div class="user-main-page-header-after-img">
         <div class="user-main-page-header-after-img-wrapper">
-          <h5><%= @user.firstname %> <%= @user.lastname %></h5>
+          <h5><%= User.find(post.user_id).firstname %> <%= User.find(post.user_id).lastname %></h5>
           <h6><%= time_ago_in_words(post.created_at) %></h6>
         </div>
       </div>

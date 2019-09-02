@@ -26,3 +26,4 @@ import '../src/friend_requests.js';
 import '../src/post_likes.js';
 import '../src/posts.js';
 import '../src/static_pages.js';
+import '../src/profile.js';

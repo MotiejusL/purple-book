@@ -1,6 +1,9 @@
 $main-font-family: 'Heebo', sans-serif;
 $logo-font: 'Ruda', sans-serif;
 
+body {
+  font-family: $main-font-family;
+}
 h1 {
   font-size: 36px;
   margin: 17px 0;

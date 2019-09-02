@@ -1,0 +1,29 @@
+<%= render "layouts/header" %>
+<div class="user-profile-page-wrapper">
+  <div class="user-profile-page-content-container">
+    <%= render "profiles/profilecover" %>
+    <div class="user-profile-page-content">
+      <div class="user-profile-page-friends-tab">
+        <div class="user-profile-page-friends-tab-header">
+          <h2><i></i>Friends</h2>
+          <h4>All Friends</h4>
+        </div>
+        <div class="user-profile-page-friends-tab-friends">
+          <% @friends.each do |friend| %>
+            <div class="user-profile-page-friends-tab-friend">
+              <%= image_tag(friend.image) %>
+              <div class="user-profile-page-friends-tab-friend-info">
+                <div class="user-profile-page-friends-tab-friend-info-left">
+                  <h3><%= friend.firstname %>&nbsp<%= friend.lastname %></h3>
+                </div>
+                <div class="user-profile-page-friends-tab-friend-info-right">
+                  <button></button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { promiseOfCurrentUser } from './users'
-import { addListenersforComments, displayNoneComments, likeComment, unLikeComment } from './comment_likes'
+import { addListenersforComments, likeComment, unLikeComment } from './comment_likes'
 
   const posts = document.getElementsByClassName("user-main-page-post");
   let currentUserId;
@@ -129,7 +129,7 @@ import { addListenersforComments, displayNoneComments, likeComment, unLikeCommen
     likeButton.innerHTML = "Like";
     replyButton.innerHTML = "Reply";
     createAgo.innerHTML = time_ago;
-    commentImage.src = "../assets/" + user.image + "";
+    commentImage.src = "/assets/" + user.image + "";
     commentText.appendChild(userLink);
     commentText.appendChild(commentContent);
     commentFooter.appendChild(likeButton);

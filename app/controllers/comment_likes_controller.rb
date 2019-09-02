@@ -6,7 +6,7 @@ class CommentLikesController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:userId])
+    @user = User.find(session[:current_user_id])
     @comment = Comment.find(params[:id])
     @like = @comment.comment_likes.build(user_id: @user.id)
     if @like.save
@@ -18,7 +18,7 @@ class CommentLikesController < ApplicationController
   end
 
   def delete
-    @user = User.find(params[:userId])
+    @user = User.find(session[:current_user_id])
     @comment = Comment.find(params[:id])
     @like = CommentLike.find_by(user_id: @user.id, comment_id: @comment.id)
     @like.destroy
@@ -30,7 +30,7 @@ class CommentLikesController < ApplicationController
     likedCommentsIds = []
     comments.each do |comment|
       comment.comment_likes.each do |like|
-        if like.user.id == params[:userId].to_i
+        if like.user.id == session[:current_user_id].to_i
           likedCommentsIds.push(comment.id)
         end
       end

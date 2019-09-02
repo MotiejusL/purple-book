@@ -1,0 +1,27 @@
+<div class="user-profile-cover">
+  <div class="user-profile-cover-photo">
+    <%= image_tag(@profileUser.coverphoto) %>
+  </div>
+  <div class="user-profile-cover-menu">
+    <ul>
+      <%= link_to(profile_path(@profileUser)) do %>
+        <li>Timeline</li>
+      <% end %>
+      <%= link_to(profile_about_path(@profileUser)) do %>
+        <li>About</li>
+      <% end %>
+      <%= link_to(profile_friends_path(@profileUser)) do %>
+        <li>Friends</li>
+      <% end %>
+      <%= link_to(profile_photos_path(@profileUser)) do %>
+        <li>Photos</li>
+      <% end %>
+    </ul>
+    <div class="user-profile-cover-main-photo">
+      <%= image_tag(@profileUser.image) %>
+    </div>
+    <div class="user-profile-cover-name">
+      <span><%= @profileUser.firstname %> <%= @profileUser.lastname %></span>
+    </div>
+  </div>
+</div>

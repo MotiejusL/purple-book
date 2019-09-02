@@ -6,7 +6,7 @@ class PostLikesController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:userId])
+    @user = User.find(session[:current_user_id])
     @post = Post.find(params[:id])
     @like = @post.post_likes.build(user_id: @user.id)
     if @like.save
@@ -18,7 +18,7 @@ class PostLikesController < ApplicationController
   end
 
   def delete
-    @user = User.find(params[:userId])
+    @user = User.find(session[:current_user_id])
     @post = Post.find(params[:id])
     @like = PostLike.find_by(user_id: @user.id, post_id: @post.id)
     @like.destroy
@@ -26,7 +26,7 @@ class PostLikesController < ApplicationController
   end
 
   def check_if_liked_by_user
-    @postLike = PostLike.find_by(post_id: params[:id], user_id: params[:userId])
+    @postLike = PostLike.find_by(post_id: params[:id], user_id: session[:current_user_id])
     if @postLike != nil
       render json: {liked: true}
     else

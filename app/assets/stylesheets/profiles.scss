@@ -1,0 +1,81 @@
+.user-profile-page-friends-tab {
+  border: 1px solid rgb(204,208,213);
+  .user-profile-page-friends-tab-header {
+    padding-top: 16px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(245,246,247);
+    h2 {
+      font-size: 20px;
+      color: rgb(75,79,86);
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    h4 {
+      font-size: 13px;
+      color: rgb(75,79,86);
+      margin: 4px 0 6px 0;
+    }
+  }
+  .user-profile-page-friends-tab-friends {
+    padding: 15px 15px;
+    background-color: rgb(255,255,255);
+    .user-profile-page-friends-tab-friend {
+      overflow: hidden;
+      border: 1px solid rgb(233,235,238);
+      width: 50%;
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        float: left;
+      }
+      .user-profile-page-friends-tab-friend-info {
+        float: left;
+        height: 100px;
+        width: calc(100% - 100px);
+        .user-profile-page-friends-tab-friend-info-left {
+          float: left;
+          padding-left: 10px;
+          h3 {
+            margin: 0;
+            line-height: 100px;
+            font-size: 14px;
+            color: #6e3f85;
+          }
+        }
+        .user-profile-page-friends-tab-friend-info-right {
+          float: right;
+          line-height: 100px;
+          padding-right: 10px;
+          .friend {
+            background-color: rgb(245,246,247);
+            border: 1px solid rgb(204,208,213);
+            border-radius: 2px;
+            padding: 0 8px;
+            height: 24px;
+            color: rgb(75,79,86);
+            font-weight: bold;
+            cursor: pointer;
+            &:hover {
+              background-color: rgb(235,237,240);
+            }
+          }
+          .not-friend {
+            background-color: #6e3f85;
+            border: 1px solid #35204f;
+            border-radius: 2px;
+            padding: 0 8px;
+            height: 24px;
+            color: rgb(255,255,255);
+            font-weight: bold;
+            cursor: pointer;
+            &:hover {
+              background-color: rgb(75,0,130);
+            }
+          }
+        }
+      }
+    }
+  }
+}

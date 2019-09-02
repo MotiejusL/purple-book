@@ -37,16 +37,8 @@ import { promiseOfCurrentUser } from './users'
                 })
           } else {
             postCommentsDiv.style.display = "block";
-            buttonClicked.removeEventListener("click", addListenersforComments);
-            buttonClicked.addEventListener("click", displayNoneComments);
           }
       })
-  }
-
-  function displayNoneComments(element) {
-    element.currentTarget.commentsDiv.style.display = "none";
-    element.currentTarget.removeEventListener("click", displayNoneComments);
-    element.currentTarget.addEventListener("click", addListenersforComments);
   }
 
   function likeComment(element) {
@@ -117,4 +109,4 @@ import { promiseOfCurrentUser } from './users'
     })
   }
 
-  export { addListenersforComments, displayNoneComments, likeComment, unLikeComment }
+  export { addListenersforComments, likeComment, unLikeComment }

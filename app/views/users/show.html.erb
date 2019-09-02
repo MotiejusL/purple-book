@@ -1,39 +1,4 @@
-<header class="user-main-page-header">
-  <div class="user-main-page-header-container">
-    <div class="wrap-for-flex">
-      <div class="row">
-        <div class="user-main-page-header-search column-5">
-          <input type="text" placeholder="Search"></input>
-          <button><i class="fas fa-search"></i></button>
-        </div>
-        <div class="user-main-page-header-menu column-6">
-          <ul>
-            <li id="header-user-name">
-              <div class="background first-background">
-                <a>
-                  <div class="user-header-profile">
-                    <%= image_tag(@user.image, class: "user-main-page-header-image") %>
-                    <div class="user-header-profile-name">
-                      <span><%= @user.firstname %></span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li><div class="background"><a href="#">Home</a></div></li>
-            <li><div class="background"><a href="#">Find friends</a></div></li>
-            <li><div class="background"><a href="#">Create</a></div></li>
-            <li class="user-main-page-header-friend-requests"><i class="fas fa-user-friends"></i></li>
-            <li><a href="#"><i class="fab fa-facebook-messenger"></i></a></li>
-            <li><a href="#"><i class="fas fa-bell"></i></a></li>
-            <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
-            <li><a href="#"><i class="fas fa-sort-down"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+<%= render "layouts/header" %>
 <div class="user-main-page-content-background">
   <div class="user-main-page-content-container">
     <div class="row">
@@ -41,10 +6,12 @@
         <div class="user-main-page-content-sidebar-menu">
           <ul>
             <li>
-              <div class="user-main-page-content-profile">
-                <%= image_tag(@user.image, class: "user-main-page-content-image") %>
-                <div class="user-main-page-content-profile-name"><%= @user.firstname %> <%= @user.lastname %></div>
-              </div>
+              <%= link_to(profile_path(@user)) do %>
+                <div class="user-main-page-content-profile">
+                  <%= image_tag(@user.image, class: "user-main-page-content-image") %>
+                  <div class="user-main-page-content-profile-name"><%= @user.firstname %> <%= @user.lastname %></div>
+                </div>
+              <% end %>
             </li>
             <li><a href="#">Newsfeed</a></li>
             <li><a href="#">Timeline</a></li>
@@ -67,39 +34,7 @@
         </div>
       </div>
       <div class="user-main-page-middle-bar column-7">
-        <div class="main-page-create-post">
-          <div class="main-page-create-post-header">
-            <h5>Create post</h5>
-          </div>
-          <div class="main-page-create-post-inner">
-            <div class="main-page-create-post-form">
-              <%= form_tag("/users/" + @user.id.to_s + "/posts", method: "post") do %>
-              <%= image_tag(@user.image, class: "main-page-create-post-image") %>
-              <%= text_field_tag(:post_text, nil, placeholder: "What's on your mind, " + @user.firstname + "?") %>
-              <div class="main-page-create-post-footer">
-                <div class="main-page-create-post-footer-container">
-                  <div class="create-post-divider"></div>
-                  <button>
-                    <i class="far fa-image"></i>
-                    <span>Photos</span>
-                  </button>
-                  <button>
-                  <i class="fas fa-user-tag"></i>
-                  <span>Tag a friend</span>
-                  </button>
-                  <button>
-                  <i class="fas fa-laugh"></i>
-                  <span>Emotion</span>
-                  </button>
-                </div>
-              </div>
-              <div class="main-page-create-post-focus">
-                <%= submit_tag("Share", class: "main-page-create-post-submit") %>
-              </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
+        <%= render "posts/createpost" %>
         <ul class="main-page-posts">
           <%= render @posts %>
         </ul>
