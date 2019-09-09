@@ -3,6 +3,9 @@
 <div class="user-profile-page-content-container">
   <%= render "profiles/profilecover" %>
   <div class="user-profile-page-content">
+    <div class="hidden-tab-fields">
+      <%= hidden_field_tag("cover-timeline") %>
+    </div>
     <div class="row">
       <div class="user-profile-left-side">
         <div class="user-profile-page-info">
@@ -11,16 +14,16 @@
           </div>
           <div class="user-profile-page-intro-content">
             <div class="user-profile-page-intro-infos">
-              <div>
-                <% if @profileUser.country != nil && @profileUser.city != nil %>
+              <% if @profileUser.country != nil && @profileUser.city != nil %>
+                <div>
                   <i></i><span>Lives in <%= @profileUser.country %>,&nbsp<%= @profileUser.city %></span>
-                <% end %>
-              </div>
-              <div>
-                <% if @profileUser.school!= nil %>
+                </div>
+              <% end %>
+              <% if @profileUser.school!= nil %>
+                <div>
                   <i></i><span>Went to <%= @profileUser.school %></span>
-                <% end %>
-              </div>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
@@ -28,12 +31,21 @@
           <div class="user-profile-page-info-headers">
             <div class="user-profile-icon-wrapper photos"><i class="far fa-image"></i></div><span>Photos</span>
           </div>
+          <div class="user-profile-lists">
+            <ul>
+              <% @photos.each do |photo|%>
+                <li class="user-profile-page-photos-photo">
+                  <%= image_tag(photo.image) %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
         <div class="user-profile-page-info">
           <div class="user-profile-page-info-headers">
             <div class="user-profile-icon-wrapper friends"><i class="fas fa-user-friends"></i></div><span>Friends</span>&nbsp<span class="dot-seperator">.</span>&nbsp<span class="user-profile-page-friends-count"></span>
           </div>
-          <div class="user-profile-friends-list">
+          <div class="user-profile-lists">
             <ul>
               <%= render @friends %>
             </ul>
@@ -48,4 +60,9 @@
     </div>
   </div>
 </div>
+</div>
+
+<div class="modal">
+  <%= image_tag("", class: "modal-content") %>
+  <button class="modal-exit"><i class="fas fa-times"></i></button>
 </div>

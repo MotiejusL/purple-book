@@ -149,3 +149,5 @@ import { addListenersforComments, likeComment, unLikeComment } from './comment_l
     createAgo.classList.add("main-page-post-comment-create-ago");
     return comment;
   }
+
+  export { clearChildNodesExcept };

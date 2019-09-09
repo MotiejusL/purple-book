@@ -3,35 +3,7 @@
   <div class="user-main-page-content-container">
     <div class="row">
       <div class="user-main-page-left-side-bar column-2">
-        <div class="user-main-page-content-sidebar-menu">
-          <ul>
-            <li>
-              <%= link_to(profile_path(@user)) do %>
-                <div class="user-main-page-content-profile">
-                  <%= image_tag(@user.image, class: "user-main-page-content-image") %>
-                  <div class="user-main-page-content-profile-name"><%= @user.firstname %> <%= @user.lastname %></div>
-                </div>
-              <% end %>
-            </li>
-            <li><a href="#">Newsfeed</a></li>
-            <li><a href="#">Timeline</a></li>
-            <li><a href="#">All Users</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Friends</a></li>
-            <li><a href="#">Friend Requests</a></li>
-            <li><a href="#">Find Friends</a></li>
-            <li><a href="#">Notifications</a></li>
-            <div class="main-page-sidebar-divider"></div>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact/Help</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <div class="main-page-sidebar-divider"></div>
-            <li><a href="#">Log Out</a></li>
-            <div class="main-page-sidebar-divider-last"></div>
-            <li>Purplebook &copy; 2019</li>
-          </ul>
-        </div>
+        <%= render 'users/sidebar' %>
       </div>
       <div class="user-main-page-middle-bar column-7">
         <%= render "posts/createpost" %>

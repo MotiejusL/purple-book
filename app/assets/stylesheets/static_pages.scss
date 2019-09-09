@@ -215,3 +215,40 @@
     text-decoration-line: none;
   }
 }
+
+.user-main-page-site-info {
+  background-color: rgb(255,255,255);
+  border: 1px solid rgb(221,223,226);
+  border-radius: 3px;
+  padding: 12px 15px;
+  width: 85%;
+  .user-main-page-site-info-header {
+    color: rgb(55,62,77);
+    h1 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    border-bottom: 1px solid rgb(233,235,238);
+  }
+  .user-main-page-site-info-content {
+    padding: 10px 0;
+    font-size: 15px;
+    line-height: 18px;
+    h3 {
+      color: rgb(0,0,0);
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    p {
+      color: rgb(20,24,35);
+      padding: 5px 0;
+    }
+    ul {
+      padding: 12px 0 12px 30px;
+      li {
+        list-style-type: square;
+      }
+    }
+  }
+}

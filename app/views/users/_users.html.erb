@@ -1,0 +1,16 @@
+<div class="users-reusable-container">
+  <% users.each do |user| %>
+    <div class="users-reusable-user">
+      <%= image_tag(user.image) %>
+      <div class="users-reusable-user-info">
+        <div class="users-reusable-user-info-left">
+          <h3><%= user.firstname %>&nbsp<%= user.lastname %></h3>
+          <%= hidden_field_tag("user-id", user.id) %>
+        </div>
+        <div class="users-reusable-user-info-right">
+          <button></button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+<div class="user-main-page-content-sidebar-menu">
+  <ul>
+    <li>
+      <%= link_to(profile_path(@user)) do %>
+        <div class="user-main-page-content-profile">
+          <%= image_tag(@user.image, class: "user-main-page-content-image") %>
+          <div class="user-main-page-content-profile-name"><%= @user.firstname %> <%= @user.lastname %></div>
+        </div>
+      <% end %>
+    </li>
+    <li><%= link_to("Newsfeed", profile_path(@user)) %></li>
+    <li><%= link_to("Profile", profile_path(@user)) %></li>
+    <li><%= link_to("Friends", all_friends_path) %></li>
+    <li><%= link_to("Friend Requests", all_requests_path) %></li>
+    <li><%= link_to("Find Friends", all_users_path) %></li>
+    <li><a href="#">Notifications</a></li>
+    <div class="main-page-sidebar-divider"></div>
+    <li><%= link_to("About", about_path) %></li>
+    <li><%= link_to("Privacy", privacy_path) %></li>
+    <li><%= link_to("Terms of Service", terms_path) %></li>
+    <div class="main-page-sidebar-divider"></div>
+    <li><a href="#">Log Out</a></li>
+    <div class="main-page-sidebar-divider-last"></div>
+    <li>Purplebook &copy; 2019</li>
+  </ul>
+</div>

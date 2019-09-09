@@ -3,7 +3,28 @@
   <div class="user-profile-page-content-container">
     <%= render "profiles/profilecover" %>
     <div class="user-profile-page-content">
-      <p>about</p>
+      <div class="hidden-tab-fields">
+        <%= hidden_field_tag("cover-about") %>
+      </div>
+      <div class="user-profile-page-tab">
+        <div class="user-profile-page-tab-header">
+          <h2><i></i>About</h2>
+        </div>
+        <div class="user-profile-page-about-tab">
+          <div class="user-profile-page-about-tab-selects">
+            <ul>
+              <div class="user-profile-page-about-tab-select">
+                <li id="basic-info">Contact and Basic Info</li>
+              </div>
+              <div class="user-profile-page-about-tab-select">
+                <li id="education">Education</li>
+              </div>
+            </ul>
+          </div>
+          <div class="user-profile-page-about-tab-selects-show">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,9 @@
+<%= render "layouts/header" %>
+<div class="all-users-page-wrapper">
+  <div class="all-users-page-container">
+    <div class="all-user-page-header">
+      <h2>All Friends</h2>
+    </div>
+    <%= render "users/users", users: @friends %>
+  </div>
+</div>

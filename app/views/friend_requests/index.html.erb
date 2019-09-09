@@ -1,0 +1,28 @@
+<%= render "layouts/header" %>
+<div class="all-users-page-wrapper">
+  <div class="all-users-page-container">
+    <div class="all-user-page-header">
+      <h2>Respond to Your Friend Requests</h2>
+    </div>
+    <div class="users-reusable-container">
+      <% @friendRequests.each do |user| %>
+        <div class="users-reusable-user">
+          <%= image_tag(user.image) %>
+          <div class="users-reusable-user-info">
+            <div class="users-reusable-user-info-left">
+              <h3><%= user.firstname %>&nbsp<%= user.lastname %></h3>
+              <%= hidden_field_tag("user-id", user.id) %>
+            </div>
+            <div class="users-user-info-right-all-page">
+              <div class="user-main-page-request-buttons">
+                <button>Confirm</button>
+                <button>Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

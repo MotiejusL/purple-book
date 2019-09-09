@@ -20,9 +20,12 @@
                 <% end %>
               </div>
             </li>
-            <li><div class="background"><a href="#">Home</a></div></li>
-            <li><div class="background"><a href="#">Find friends</a></div></li>
-            <li><div class="background"><a href="#">Create</a></div></li>
+            <li><div class="background">
+              <%= link_to(home_path(@user)) do %>
+                <span>Home</span></div></li>
+              <% end %>
+            <li><div class="background"><span><%= link_to("Find Friends", all_users_path) %></div></li>
+            <li><div class="background"><span>Create</span></div></li>
             <li class="user-main-page-header-friend-requests"><i class="fas fa-user-friends"></i></li>
             <li><a href="#"><i class="fab fa-facebook-messenger"></i></a></li>
             <li><a href="#"><i class="fas fa-bell"></i></a></li>

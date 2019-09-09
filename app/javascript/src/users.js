@@ -85,8 +85,8 @@
   function requestCurrentUser() {
     return new Promise(resolve => {
       Rails.ajax({
-        async: false,
-        url: '/users/current_user',
+        //async: false,
+        url: '/current_user',
         type: 'GET',
         beforeSend: function () {
           return true;

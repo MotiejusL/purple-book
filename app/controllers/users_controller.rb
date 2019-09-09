@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   def index
+    @user = User.find(session[:current_user_id])
+    @users = User.where.not(:id => @user.friends)
   end
 
   def show

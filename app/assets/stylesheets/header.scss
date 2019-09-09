@@ -62,7 +62,6 @@
           height: 24px;
           object-fit: cover;
           border-radius: 50%;
-          margin-bottom: 2px;
         }
         .user-header-profile-name {
           padding-left: 6px;
@@ -116,10 +115,9 @@
             position: relative;
             top: -2px;
             padding: 0 14px;
-            a {
-              position: relative;
-              top: 2px;
-            }
+            display: flex;
+            justify-content: center;
+            align-items: center;
             &:hover {
               background-color: rgba(75,0,130,0.35);
               border-radius: 2px;

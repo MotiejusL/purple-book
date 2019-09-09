@@ -3,9 +3,19 @@ Rails.application.routes.draw do
 
   root 'static_pages#main'
 
+  get '/users/:id/about', to: 'static_pages#about', as: 'about'
+
+  get '/users/:id/privacy', to: 'static_pages#privacy', as: 'privacy'
+
+  get '/users/:id/terms', to: 'static_pages#terms', as: 'terms'
+
   post '/users', to: 'users#create'
 
-  get '/users/:id', to: 'users#show'
+  get '/users/:id/all_users', to: 'users#index', as: 'all_users'
+
+  get '/users/:id/all_friends', to: 'friends#index', as: 'all_friends'
+
+  get '/users/:id', to: 'users#show', as: 'home'
 
   get '/users/:id/profile', to: 'profiles#show', as: 'profile'
 
@@ -15,7 +25,9 @@ Rails.application.routes.draw do
 
   get '/users/:id/profile/about', to: 'profiles#about', as: 'profile_about'
 
-  get '/users', to: 'users#index'
+  get '/users/profile/get_current_user_friends', to: 'profiles#get_current_user_friends'
+
+  get'/users/:id/profile/about/get_profile_user_info', to: 'profiles#get_profile_user_info'
 
   put '/users/:id', to: 'users#update'
 
@@ -25,7 +37,7 @@ Rails.application.routes.draw do
 
   post '/users/:id/posts', to: 'posts#create'
 
-  get '/users/current_user', to: 'users#current_user'
+  get '/current_user', to: 'users#current_user'
 
   post '/posts/:id/comments', to: 'comments#create'
 
@@ -45,7 +57,7 @@ Rails.application.routes.draw do
 
   get '/comments/:postId/check_likes', to: 'comment_likes#check_likes'
 
-  get '/users/:id/friend_requests', to: 'friend_requests#index'
+  get '/users/:id/friend_requests', to: 'friend_requests#index', as: 'all_requests'
 
   put 'users/friend_requests/:id/accept', to: 'friend_requests#accept_request'
 

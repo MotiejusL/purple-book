@@ -1,20 +1,21 @@
 <div class="user-profile-cover">
+  <%= hidden_field_tag("profile-user-id", @profileUser.id) %>
   <div class="user-profile-cover-photo">
     <%= image_tag(@profileUser.coverphoto) %>
   </div>
   <div class="user-profile-cover-menu">
     <ul>
       <%= link_to(profile_path(@profileUser)) do %>
-        <li>Timeline</li>
+        <li class="first-tab" id="timeline">Timeline</li>
       <% end %>
       <%= link_to(profile_about_path(@profileUser)) do %>
-        <li>About</li>
+        <li id="about">About</li>
       <% end %>
       <%= link_to(profile_friends_path(@profileUser)) do %>
-        <li>Friends</li>
+        <li id="friends">Friends</li>
       <% end %>
       <%= link_to(profile_photos_path(@profileUser)) do %>
-        <li>Photos</li>
+        <li id="photos">Photos</li>
       <% end %>
     </ul>
     <div class="user-profile-cover-main-photo">

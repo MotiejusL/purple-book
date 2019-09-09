@@ -60,6 +60,7 @@ import { promiseOfCurrentUser } from './users'
       Rails.ajax({
         url: "/users/" + userId + "/friend_requests",
         type: "GET",
+        dataType: "json",
         beforeSend: function() {
           return true;
         },
@@ -84,7 +85,7 @@ import { promiseOfCurrentUser } from './users'
     const requestProfile = document.createElement("div");
     requestProfile.classList.add("user-main-page-request-profile");
     const requestUserImage = document.createElement("img");
-    requestUserImage.src = "../assets/" + element.img + "";
+    requestUserImage.src = "/assets/" + element.img + "";
     requestUserImage.classList.add("user-main-page-request-image");
     const requestUserName = document.createElement("div");
     requestUserName.innerHTML = element.name;

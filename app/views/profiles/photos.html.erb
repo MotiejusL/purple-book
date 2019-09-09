@@ -3,7 +3,29 @@
   <div class="user-profile-page-content-container">
     <%= render "profiles/profilecover" %>
     <div class="user-profile-page-content">
-      <p>photos</p>
+      <div class="hidden-tab-fields">
+        <%= hidden_field_tag("cover-photos") %>
+      </div>
+      <div class="user-profile-page-tab">
+        <div class="user-profile-page-tab-header">
+          <h2><i></i>Photos</h2>
+          <h4><%= @profileUser.firstname%>&nbspPhotos</h4>
+        </div>
+        <div class="user-profile-page-photos-tab-photos">
+          <% @photos.each do |photo| %>
+            <div class="user-profile-page-photos-tab-photo">
+              <div class="image-holder">
+                <%= image_tag(photo.image) %>
+                <div class="image-hover-shadow"></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+<div class="modal">
+  <%= image_tag("", class: "modal-content") %>
+  <button class="modal-exit"><i class="fas fa-times"></i></button>
 </div>

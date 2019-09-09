@@ -76,48 +76,49 @@
       }
     }
   }
-  .user-main-page-request-buttons {
-    float:right;
-    display: flex;
-    align-items: center;
-    height: 48px;
-    button {
-      &:nth-of-type(1) {
-        padding: 0 8px;
-        width: 64px;
-        height: 24px;
-        background-color: rgba(128,0,128,0.7);
-        color: rgb(255,255,255);
-        font-size: 12px;
-        font-weight: bold;
-        border-radius: 2px;
-        border: 1px solid rgb(204,208,213);
-        transition: background-color 0.2s;
-        &:hover {
-          background-color: rgba(128,0,128,0.9);
-        }
-      }
-      &:nth-of-type(2) {
-        margin-left: 4px;
-        padding: 0 8px;
-        width: 54px;
-        height: 24px;
-        color: rgb(75,79,86);
-        background-color: rgb(245,246,247);
-        border-radius: 2px;
-        font-size: 12px;
-        font-weight: bold;
-        border: 1px solid rgb(204,208,213);
-        transition: background-color 0.2s;
-        &:hover {
-          background-color: rgb(235,237,240);
-        }
-      }
-    }
-  }
   &:after {
     content: " ";
     display: block;
     clear: both;
+  }
+}
+
+.user-main-page-request-buttons {
+  float:right;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  button {
+    &:nth-of-type(1) {
+      padding: 0 8px;
+      width: 64px;
+      height: 24px;
+      background-color: rgba(128,0,128,0.7);
+      color: rgb(255,255,255);
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 2px;
+      border: 1px solid rgba(128,0,128,0.4);
+      transition: background-color 0.2s;
+      &:hover {
+        background-color: rgba(128,0,128,0.9);
+      }
+    }
+    &:nth-of-type(2) {
+      margin-left: 4px;
+      padding: 0 8px;
+      width: 54px;
+      height: 24px;
+      color: rgb(75,79,86);
+      background-color: rgb(245,246,247);
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid rgb(204,208,213);
+      transition: background-color 0.2s;
+      &:hover {
+        background-color: rgb(235,237,240);
+      }
+    }
   }
 }
