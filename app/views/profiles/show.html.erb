@@ -35,7 +35,9 @@
             <ul>
               <% @photos.each do |photo|%>
                 <li class="user-profile-page-photos-photo">
-                  <%= image_tag(photo.image) %>
+                  <div class="profile-photos-photo-container">
+                    <%= image_tag(photo.image) %>
+                  </div>
                 </li>
               <% end %>
             </ul>
@@ -53,6 +55,9 @@
         </div>
       </div>
       <div class="user-profile-right-side">
+        <% if @profileUser == @user %>
+          <%= render "posts/createpost" %>
+        <% end %>
         <ul class="main-page-posts">
           <%= render @posts %>
         </ul>

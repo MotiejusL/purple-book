@@ -35,7 +35,11 @@ Rails.application.routes.draw do
 
   get '/logincheck', to: 'static_pages#logincheck'
 
+  get '/logout', to: 'static_pages#logout', as: 'logout'
+
   post '/users/:id/posts', to: 'posts#create'
+
+  delete '/users/:id/posts/:post_id', to: 'posts#delete'
 
   get '/current_user', to: 'users#current_user'
 
@@ -59,10 +63,12 @@ Rails.application.routes.draw do
 
   get '/users/:id/friend_requests', to: 'friend_requests#index', as: 'all_requests'
 
-  put 'users/friend_requests/:id/accept', to: 'friend_requests#accept_request'
+  post '/users/:id/friend_requests', to: 'friend_requests#create'
 
-  delete 'users/friend_requests/:id/delete', to: 'friend_requests#delete'
+  put '/users/friend_requests/:id/accept', to: 'friend_requests#accept_request'
 
-  get 'users/profile/get_friends_count', to: 'users#get_friends_count'
+  delete '/users/friend_requests/:id/delete', to: 'friend_requests#delete'
+
+  get '/users/profile/get_friends_count', to: 'users#get_friends_count'
 
 end

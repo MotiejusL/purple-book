@@ -1,8 +1,10 @@
+@import 'mixins';
+@import 'afterreset';
+
 .user-main-page-post-comments {
+  padding: 7px 12px 0 12px;
   .main-page-post-comment {
-    height: 53px;
     padding: 4px 0;
-    margin: 7px 0;
     .main-page-post-comment-image {
       height: 32px;
       width: 32px;
@@ -11,35 +13,40 @@
       object-fit: cover;
     }
     .main-page-post-comment-text {
-      display: inline-block;
+      display: inline-flex;
       padding: 8px 10px;
       border-radius: 18px;
       background-color: rgb(242,243,245);
       margin-left: 5px;
+      min-height: 28px;
+      vertical-align: middle;
+      align-items: center;
+      @include font-size(13);
       .main-page-post-comment-user-link {
         color: rgb(128,0,128);
         font-weight: bold;
-        font-size: 13px;
+        &:hover {
+          text-decoration: underline;
+        }
       }
       .main-page-post-comment-content {
         margin-left: 5px;
-        font-size: 13px;
       }
     }
     .main-page-post-comment-footer {
       height: 21px;
       padding-left: 40px;
+      @include font-size(12);
       button {
-        font-size: 12px;
         color: rgb(128,0,128);
         border: none;
         background-color: transparent;
+        @include font-size(13);
         &:hover {
           text-decoration: underline;
         }
       }
       .main-page-post-comment-create-ago {
-        font-size: 12px;
         color: rgb(96,103,112);
       }
     }

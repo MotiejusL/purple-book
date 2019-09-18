@@ -2,9 +2,11 @@
   <div class="user-main-page-header-container">
     <div class="wrap-for-flex">
       <div class="row">
-        <div class="user-main-page-header-search column-5">
-          <input type="text" placeholder="Search"></input>
-          <button><i class="fas fa-search"></i></button>
+        <div class="user-main-page-header-search column-6">
+          <div class="user-main-page-search-wrapper">
+            <input type="text" placeholder="Search"></input>
+            <button><i class="fas fa-search"></i></button>
+          </div>
         </div>
         <div class="user-main-page-header-menu column-6">
           <ul>
@@ -27,10 +29,10 @@
             <li><div class="background"><span><%= link_to("Find Friends", all_users_path) %></div></li>
             <li><div class="background"><span>Create</span></div></li>
             <li class="user-main-page-header-friend-requests"><i class="fas fa-user-friends"></i></li>
-            <li><a href="#"><i class="fab fa-facebook-messenger"></i></a></li>
-            <li><a href="#"><i class="fas fa-bell"></i></a></li>
-            <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
-            <li><a href="#"><i class="fas fa-sort-down"></i></a></li>
+            <li><a href="#"><%= fa_icon("facebook-messenger", type: :fab) %></a></li>
+            <li><a href="#"><%= fa_icon("bell", type: :fas) %></a></li>
+            <li><a href="#"><%= fa_icon("question-circle", type: :fas) %></a></li>
+            <li><a href="#"><%= fa_icon("sort-down", type: :fas) %></a></li>
           </ul>
         </div>
       </div>

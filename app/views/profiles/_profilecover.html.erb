@@ -5,8 +5,8 @@
   </div>
   <div class="user-profile-cover-menu">
     <ul>
-      <%= link_to(profile_path(@profileUser)) do %>
-        <li class="first-tab" id="timeline">Timeline</li>
+      <%= link_to(profile_path(@profileUser), class: "first-tab") do %>
+        <li id="timeline">Timeline</li>
       <% end %>
       <%= link_to(profile_about_path(@profileUser)) do %>
         <li id="about">About</li>

@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @user = User.find(params[:id])
     @post = @user.posts.build(content: params[:post_text])
     if @post.save
-      redirect_to controller: 'users', action: 'show', id: @user.id
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -17,5 +17,8 @@ class PostsController < ApplicationController
   end
 
   def delete
+    @user = User.find(params[:id])
+    @post = Post.find(params[:post_id])
+    @post.destroy
   end
 end

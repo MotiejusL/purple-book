@@ -4,7 +4,11 @@
       <%= image_tag(user.image) %>
       <div class="users-reusable-user-info">
         <div class="users-reusable-user-info-left">
-          <h3><%= user.firstname %>&nbsp<%= user.lastname %></h3>
+          <h3>
+            <%= link_to(profile_path(user)) do %>
+              <%= user.firstname %> <%= user.lastname %>
+            <% end %>
+          </h3>
           <%= hidden_field_tag("user-id", user.id) %>
         </div>
         <div class="users-reusable-user-info-right">

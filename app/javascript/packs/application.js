@@ -16,14 +16,15 @@
 // const imagePath = (name) => images(name, true)
 
 import Rails from 'rails-ujs';
-//import Turbolinks from 'turbolinks';
-Rails.start();
-//Turbolinks.start();
+
 import 'bootstrap/dist/js/bootstrap';
-import '../src/users.js';
-import '../src/comment_likes.js';
-import '../src/friend_requests.js';
-import '../src/post_likes.js';
-import '../src/posts.js';
-import '../src/static_pages.js';
-import '../src/profile.js';
+import '../src/users';
+import '../src/comment_likes';
+import '../src/friend_requests';
+import '../src/post_likes';
+import '../src/posts';
+import '../src/static_pages';
+import '../src/profile';
+import '../src/responsive';
+
+Rails.start();

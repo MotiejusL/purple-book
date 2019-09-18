@@ -11,6 +11,18 @@
             <% end %>
           </h5>
           <h6><%= time_ago_in_words(post.created_at) %></h6>
+          <% if @user == User.find(post.user_id) %>
+          <div class="user-main-page-header-after-image-post-menu">
+            <div class="row">
+              <i class="fas fa-ellipsis-h"></i>
+            </div>
+            <div class="user-main-page-header-after-image-post-menu-popup">
+              <ul>
+                <li class="delete-post"><i class="fas fa-trash-alt"></i> Delete post</li>
+              </ul>
+            </div>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>

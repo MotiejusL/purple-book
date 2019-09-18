@@ -27,7 +27,8 @@ class ProfilesController < ApplicationController
   def get_current_user_friends
     @user = User.find(session[:current_user_id])
     @currentUserFriendsIds = @user.friends.ids
-    render json: {friendsIds: @currentUserFriendsIds}
+    @pendingFriendsIds = @user.pending_friends.ids
+    render json: {friendsIds: @currentUserFriendsIds, pendingFriendsIds: @pendingFriendsIds}
   end
 
   def get_profile_user_info

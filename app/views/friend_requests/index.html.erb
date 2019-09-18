@@ -5,18 +5,23 @@
       <h2>Respond to Your Friend Requests</h2>
     </div>
     <div class="users-reusable-container">
-      <% @friendRequests.each do |user| %>
+      <% @friendRequestsUsers.each do |user| %>
         <div class="users-reusable-user">
-          <%= image_tag(user.image) %>
+          <%= image_tag(user[:img]) %>
           <div class="users-reusable-user-info">
             <div class="users-reusable-user-info-left">
-              <h3><%= user.firstname %>&nbsp<%= user.lastname %></h3>
-              <%= hidden_field_tag("user-id", user.id) %>
+              <h3>
+                <%= link_to(profile_path(user[:userId])) do %>
+                  <%= user[:name] %>
+                <% end %>
+              </h3>
+              <%= hidden_field_tag("user-id", user[:userId]) %>
             </div>
             <div class="users-user-info-right-all-page">
               <div class="user-main-page-request-buttons">
                 <button>Confirm</button>
                 <button>Delete</button>
+                <%= hidden_field_tag("request-id", user[:requestId]) %>
               </div>
             </div>
           </div>

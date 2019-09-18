@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   def index
     @user = User.find(session[:current_user_id])
-    @users = User.where.not(:id => @user.friends)
+    requestsThatWereSentToUser = FriendRequest.where(friend_id: @user)
+    usersThatSentRequests = requestsThatWereSentToUser.map { |request| request.user_id }
+    @users = User.where.not(id: @user.friends).where.not(id: @user).where.not(id: usersThatSentRequests)
   end
 
   def show
@@ -14,6 +16,7 @@ class UsersController < ApplicationController
     @user.image = "default-profile.png"
     @user.coverphoto = "default-cover-img.png"
     if @user.save
+      session[:current_user_id] = @user.id
       redirect_to controller: 'users', action: 'show', id: @user.id
     else
     end

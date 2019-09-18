@@ -1,15 +1,13 @@
 @mixin main-gradient() {
-  background: #ad5389;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #ad5389;
+  background: linear-gradient(to top, #3c1053, #ad5389);
 }
 
 @mixin shadow-gradient() {
-  background: -moz-linear-gradient(top, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 75%, rgba(0,0,0,0.4) 88%, rgba(0,0,0,0.65) 96%, rgba(0,0,0,0.65) 99%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 15%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 75%,rgba(0,0,0,0.4) 88%,rgba(0,0,0,0.65) 96%,rgba(0,0,0,0.65) 99%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 15%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 75%,rgba(0,0,0,0.4) 88%,rgba(0,0,0,0.65) 96%,rgba(0,0,0,0.65) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 15%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 75%,rgba(0,0,0,0.4) 88%,rgba(0,0,0,0.65) 96%,rgba(0,0,0,0.65) 99%);
 }
-@mixin main-font() {
-  color: rgb(255,255,255);
-  font-size: 13px;
+
+@mixin font-size($size, $base: 16) {
+  font-size: $size;
+  font-size: ($size / $base) * 1rem;
 }

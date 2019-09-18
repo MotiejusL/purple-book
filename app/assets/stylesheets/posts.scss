@@ -2,13 +2,13 @@
 @import 'afterreset';
 
 .user-main-page-post {
-  font-family: $main-font-family;
   margin: 12px 0;
   background-color: rgb(255,255,255);
   padding: 12px 12px 0 12px;
   border: 1px solid rgb(221,223,226);
   border-radius: 3px;
   .user-main-page-post-header {
+    position: relative;
     img {
       width: 40px;
       height: 40px;
@@ -22,7 +22,7 @@
       vertical-align:middle;
       .user-main-page-header-after-img-wrapper {
         h5 {
-          font-size: 14px;
+          @include font-size(14);
           font-weight: bold;
           color: rgb(128,0,128);
           margin-bottom: 5px;
@@ -31,10 +31,51 @@
           }
         }
         h6 {
-          font-size: 12px;
+          @include font-size(12);
           color: rgb(97,103,112);
           &:hover {
             text-decoration: underline;
+          }
+        }
+        .user-main-page-header-after-image-post-menu {
+          position: absolute;
+          right: 0;
+          top: 0;
+          font-size: 16px;
+          width: 35%;
+          .fa-ellipsis-h {
+            float: right;
+            color: rgb(95,99,98);
+            cursor: pointer;
+            &:hover {
+              color: rgb(0,0,0);
+            }
+          }
+          .user-main-page-header-after-image-post-menu-popup {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 0;
+            border: 1px solid red;
+            border-radius: 3px 0 3px 3px;
+            border: 1px solid rgba(0,0,0,0.25);
+            box-shadow: rgba(0,0,0,0.3) 0 3px 8px 0;
+            @include font-size(14);
+            font-weight: bold;
+            max-width: 100%;
+            ul {
+              padding: 3px 0;
+              li {
+                color: rgb(0,0,0);
+                padding: 5px 12px;
+                width: 100%;
+                cursor: pointer;
+                &:hover {
+                  background-color: rgb(110,63,133);
+                  color: rgb(255,255,255);
+                }
+              }
+            }
           }
         }
       }
@@ -60,7 +101,7 @@
     .user-main-page-post-comments-count {
       float: right;
       color:#606770;
-      font-size: 13px;
+      @include font-size(13);
       &:hover {
         text-decoration: underline;
         cursor: pointer;
@@ -92,7 +133,7 @@
           border: none;
           background-color:inherit;
           line-height: 32px;
-          font-size: 14px;
+          @include font-size(14);
           font-weight: bold;
           color: #696969;
         }
@@ -108,9 +149,8 @@
     display: none;
     margin: 0 -12px 0 -12px;
     border-top: 1px solid rgb(221,223,226);
-    padding: 0 12px 0 12px;
     .user-main-page-post-create-comment {
-      padding: 8px 0 8px 0;
+      padding: 4px 0 8px 0;
       img {
         height: 32px;
         width: 32px;
@@ -119,7 +159,7 @@
         border-radius: 50%;
       }
       .user-main-page-post-create-comment-input-wrap {
-        width: calc(100% - 36px);
+        width: calc(100% - 38px);
         height: 32px;
         border-radius: 16px;
         background-color: rgb(242,243,245);
@@ -130,7 +170,7 @@
           width: 100%;
           border: none;
           background-color: transparent;
-          font-size: 13px;
+          @include font-size(13);
           color: rgb(0,0,0);
           padding-left: 10px;
         }

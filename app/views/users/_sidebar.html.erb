@@ -8,7 +8,7 @@
         </div>
       <% end %>
     </li>
-    <li><%= link_to("Newsfeed", profile_path(@user)) %></li>
+    <li><%= link_to("Newsfeed", home_path(@user)) %></li>
     <li><%= link_to("Profile", profile_path(@user)) %></li>
     <li><%= link_to("Friends", all_friends_path) %></li>
     <li><%= link_to("Friend Requests", all_requests_path) %></li>
@@ -19,7 +19,7 @@
     <li><%= link_to("Privacy", privacy_path) %></li>
     <li><%= link_to("Terms of Service", terms_path) %></li>
     <div class="main-page-sidebar-divider"></div>
-    <li><a href="#">Log Out</a></li>
+    <li><%= link_to("Log Out", logout_path) %></li>
     <div class="main-page-sidebar-divider-last"></div>
     <li>Purplebook &copy; 2019</li>
   </ul>
