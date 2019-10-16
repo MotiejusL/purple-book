@@ -23,6 +23,11 @@ body {
       width: 100%;
     }
     .user-main-page-left-side-bar {
+      position: sticky;
+      top: 55px;
+      @media screen and (max-width: 768px) {
+        top: 88px
+      }
       .user-main-page-content-profile {
         height: 28px;
         display: flex;

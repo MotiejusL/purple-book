@@ -66,22 +66,24 @@ function changeTabletHeaderLayout() {
 }
 
 function switchHeaderDivs(element) {
-  const headerContainer = document.querySelector('.user-main-page-header-container .wrap-for-flex .row');
-  const search = headerContainer.getElementsByClassName('user-main-page-header-search')[0];
-  const menu = headerContainer.getElementsByClassName('user-main-page-header-menu')[0];
+  if (document.getElementsByClassName('user-main-page-header-menu')[0] !== undefined) {
+    const headerContainer = document.querySelector('.user-main-page-header-container .wrap-for-flex .row');
+    const search = headerContainer.getElementsByClassName('user-main-page-header-search')[0];
+    const menu = headerContainer.getElementsByClassName('user-main-page-header-menu')[0];
 
-  if (element.matches) {
-    hideChildElements(headerContainer);
-    clearChildNodesExcept(0, headerContainer);
-    headerContainer.appendChild(menu);
-    headerContainer.appendChild(search);
-    displayChildElements(headerContainer);
-  } else {
-    hideChildElements(headerContainer);
-    clearChildNodesExcept(0, headerContainer);
-    headerContainer.appendChild(search);
-    headerContainer.appendChild(menu);
-    displayChildElements(headerContainer);
+    if (element.matches) {
+      hideChildElements(headerContainer);
+      clearChildNodesExcept(0, headerContainer);
+      headerContainer.appendChild(menu);
+      headerContainer.appendChild(search);
+      displayChildElements(headerContainer);
+    } else {
+      hideChildElements(headerContainer);
+      clearChildNodesExcept(0, headerContainer);
+      headerContainer.appendChild(search);
+      headerContainer.appendChild(menu);
+      displayChildElements(headerContainer);
+    }
   }
 }
 

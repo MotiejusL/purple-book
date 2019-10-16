@@ -3,6 +3,7 @@
 
 .user-profile-page-tab {
   border: 1px solid rgb(204,208,213);
+  margin-bottom: 20px;
   .user-profile-page-tab-header {
     padding-top: 16px;
     padding-left: 10px;
@@ -30,7 +31,7 @@
     }
     .user-profile-page-photos-tab-photo {
       border: 1px solid rgb(233,235,238);
-      width: calc(25% - 15px);
+      width: calc(25% - 5px);
       float: left;
       margin-bottom: 5px;
       margin-right: 5px;

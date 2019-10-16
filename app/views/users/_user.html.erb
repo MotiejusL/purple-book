@@ -1,10 +1,10 @@
 <li class="friend-box-li">
-  <div class="friend-box">
-    <%= image_tag(user.image) %>
-  </div>
-  <h4>
-    <%= link_to(profile_path(user)) do %>
+  <%= link_to(profile_path(user)) do %>
+    <div class="friend-box">
+      <%= image_tag(user.image) %>
+    </div>
+    <h4>
       <%= user.firstname %> <%= user.lastname %>
-    <% end %>
-  </h4>
+    </h4>
+  <% end %>
 </li>

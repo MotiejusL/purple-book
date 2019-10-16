@@ -1,24 +1,19 @@
-# README
+## Purplebook
+A project that was created for learning purposes with intention to copy Facebook, but redesign it a little bit, changing the colors and changing some elements and layout. It was created as a full-stack app using ruby framework Ruby On Rails.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Tools used: webpack, eslint, scss.
 
-Things you may want to cover:
+### Features implemented
+  - Users can register
+  - Users can login and logout
+  - Users can view news feed page
+  - Users can view profile page
+  - Users can view about, privacy and terms of service pages
+  - Users can search friends in a list thats shows all the registered Users
+  - Users can accept or delete their friend requests
+  - Users can create and delete a post
+  - Users can create comments
+  - Users can like posts and comments
+  - Users can send friend requests
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  #### Project is still in progress, but is being updated regulary

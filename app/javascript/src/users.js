@@ -5,6 +5,8 @@ if (createPostDiv != null) {
 
 function enlargeAndFocus() {
   createPostDiv.removeEventListener('click', enlargeAndFocus);
+
+  createPostDiv.style.zIndex = '5';
   const createPostFormText = document.getElementsByClassName('main-page-create-post-form')[0].querySelectorAll('input')[2];
   createPostFormText.style.fontSize = '1.4rem';
 
@@ -60,6 +62,9 @@ function changeBackgroundColorNormal(element) {
 
 function undoEnlargeAndFocus(event) {
   event.stopPropagation();
+
+  createPostDiv.style.zIndex = '3';
+
   const createPostFormText = document.getElementsByClassName('main-page-create-post-form')[0].querySelectorAll('input')[2];
   createPostFormText.style.fontSize = '0.875rem';
   createPostFormText.value = '';

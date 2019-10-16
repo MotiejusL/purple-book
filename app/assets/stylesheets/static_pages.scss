@@ -11,6 +11,9 @@
     width: 65%;
     height: 100%;
     margin: auto;
+    @media screen and (min-width: 2000px) {
+      width: 45%;
+    }
     @media screen and (max-width: 1024px) {
       width: 80%;
     }
@@ -145,6 +148,9 @@
   width: 65%;
   margin: auto;
   padding-bottom: 25px;
+  @media screen and (min-width: 2000px) {
+    width: 45%;
+  }
   @media screen and (max-width: 1024px) {
     width: 80%;
   }
@@ -271,6 +277,9 @@
     margin: auto;
     color: rgb(115,115,115);
     @include font-size(13);
+    @media screen and (min-width: 2000px) {
+      width: 45%;
+    }
     @media screen and (max-width: 1024px) {
       width: 80%;
     }

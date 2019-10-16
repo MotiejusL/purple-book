@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
   def friends
     @user = User.find(session[:current_user_id])
     @profileUser = User.find(params[:id])
-    @friends = @profileUser.friends
+    @friends = @profileUser.friends.where.not(id: @user.id)
   end
 
   def photos
