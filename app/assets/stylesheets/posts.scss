@@ -62,13 +62,11 @@
             box-shadow: rgba(0,0,0,0.3) 0 3px 8px 0;
             @include font-size(14);
             font-weight: bold;
-            max-width: 100%;
             ul {
               padding: 3px 0;
               li {
                 color: rgb(0,0,0);
                 padding: 5px 12px;
-                width: 100%;
                 cursor: pointer;
                 &:hover {
                   background-color: rgb(110,63,133);

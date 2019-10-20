@@ -1,8 +1,31 @@
-import { clearChildNodesExcept } from './posts';
+import { clearChildNodesExcept, clearChildNodesExceptFromLast } from './posts';
+import { promiseOfCurrentUser } from './users';
 
 changeTabletLayoutNewsfeed();
 changeTabletHeaderLayout();
-changeMobileLayoutNewsfeed();
+changeMobileLayout();
+expandMobileHeaderOnClick();
+
+window.addEventListener('resize', clearMobileHeaderToNormal);
+
+function clearMobileHeaderToNormal() {
+  const mobileDevice = window.matchMedia('(max-width: 426px)');
+  const header = document.getElementsByClassName('user-main-page-header')[0];
+  const headerMenuList = document.querySelector('.user-main-page-header-menu ul');
+  const searchBar = document.getElementsByClassName('user-main-page-header-search')[0];
+  if (headerMenuList.children.length > 10) {
+    if (!mobileDevice.matches) {
+      clearChildNodesExceptFromLast(10, headerMenuList);
+    }
+  }
+  if (!mobileDevice.matches) {
+    header.removeEventListener('click', expandMobileHeader);
+    searchBar.style.display = 'flex';
+  } else {
+    searchBar.style.display = 'none';
+    header.addEventListener('click', expandMobileHeader);
+  }
+}
 
 function changeTabletLayoutNewsfeed() {
   const tabletDevice = window.matchMedia('(max-width: 768px)');
@@ -14,14 +37,76 @@ function changeTabletLayoutNewsfeed() {
   tabletDevice.addListener(resizeMainPageColumnsTablet);
 }
 
-function changeMobileLayoutNewsfeed() {
+function changeMobileLayout() {
   const mobileDevice = window.matchMedia('(max-width: 426px)');
 
   if (mobileDevice.matches) {
     resizeMainPageColumnsMobile(mobileDevice);
+    addLinksToHeaderMobile();
   }
 
   mobileDevice.addListener(resizeMainPageColumnsMobile);
+  mobileDevice.addListener(addLinksToHeaderMobile);
+}
+
+function expandMobileHeaderOnClick() {
+  const mobileDevice = window.matchMedia('(max-width: 426px)');
+  if (mobileDevice.matches) {
+    const header = document.getElementsByClassName('user-main-page-header')[0];
+    const searchBar = document.getElementsByClassName('user-main-page-header-search')[0];
+    if (searchBar !== undefined || header !== undefined) {
+      searchBar.style.display = 'none';
+      header.addEventListener('click', expandMobileHeader);
+    }
+  }
+}
+
+function expandMobileHeader() {
+  const headerMenu = document.getElementsByClassName('user-main-page-header-menu')[0];
+  const header = document.getElementsByClassName('user-main-page-header')[0];
+  headerMenu.style.height = '100%';
+  headerMenu.style.overflow = 'visibile';
+
+  const searchBar = document.getElementsByClassName('user-main-page-header-search')[0];
+  searchBar.style.display = 'flex';
+  header.removeEventListener('click', expandMobileHeader);
+  header.addEventListener('click', minimizeMobileHeader);
+}
+
+function minimizeMobileHeader() {
+  const headerMenu = document.getElementsByClassName('user-main-page-header-menu')[0];
+  const header = document.getElementsByClassName('user-main-page-header')[0];
+  headerMenu.style.height = '30px';
+  headerMenu.style.overflow = 'hidden';
+
+  const searchBar = document.getElementsByClassName('user-main-page-header-search')[0];
+  searchBar.style.display = 'none';
+  header.removeEventListener('click', minimizeMobileHeader);
+  header.addEventListener('click', expandMobileHeader);
+}
+
+function addLinksToHeaderMobile() {
+  const mobileDevice = window.matchMedia('(max-width: 426px)');
+  if (mobileDevice.matches) {
+    promiseOfCurrentUser().then((userId) => {
+      const headerMenuList = document.querySelector('.user-main-page-header-menu ul');
+      if (headerMenuList !== null) {
+        const logoutLink = document.createElement('li');
+        logoutLink.innerHTML = '<div class="background"><span><a href="/logout">Log out</a></span></div>';
+        const friendRequestLink = document.createElement('li');
+        friendRequestLink.innerHTML = `<div class="background">
+        <span><a href="/users/${userId}/friend_requests">Friend requests</a></span>
+        </div>`;
+        const aboutLink = document.createElement('li');
+        aboutLink.innerHTML = `<div class="background">
+        <span><a href="/users/${userId}/about">About</a></span>
+        </div>`;
+        headerMenuList.appendChild(friendRequestLink);
+        headerMenuList.appendChild(aboutLink);
+        headerMenuList.appendChild(logoutLink);
+      }
+    });
+  }
 }
 
 function resizeMainPageColumnsMobile(element) {

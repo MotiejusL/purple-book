@@ -340,6 +340,12 @@ body {
                   text-decoration: underline;
                 }
               }
+              @media screen and (max-width: 768px) {
+                width: calc(100% / 2);
+              }
+              @media screen and (max-width: 500px) {
+                width: 100%;
+              }
             }
           }
         }

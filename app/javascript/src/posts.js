@@ -176,6 +176,12 @@ function clearChildNodesExcept(exceptNumber, element) {
   }
 }
 
+function clearChildNodesExceptFromLast(exceptNumber, element) {
+  while (element.childElementCount > exceptNumber) {
+    element.removeChild(element.lastElementChild);
+  }
+}
+
 function createComment(content, user, timeAgo) {
   const comment = document.createElement('div');
   const commentText = document.createElement('div');
@@ -213,4 +219,4 @@ function createComment(content, user, timeAgo) {
   return comment;
 }
 
-export { clearChildNodesExcept };
+export { clearChildNodesExcept, clearChildNodesExceptFromLast };
