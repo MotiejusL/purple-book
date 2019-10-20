@@ -64,6 +64,9 @@ function expandMobileHeaderOnClick() {
 function expandMobileHeader() {
   const headerMenu = document.getElementsByClassName('user-main-page-header-menu')[0];
   const header = document.getElementsByClassName('user-main-page-header')[0];
+  const expandIcon = document.getElementsByClassName('expand-icon')[0];
+  console.log(expandIcon);
+  expandIcon.classList.replace('fa-caret-down', 'fa-caret-up');
   headerMenu.style.height = '100%';
   headerMenu.style.overflow = 'visibile';
 
@@ -76,6 +79,8 @@ function expandMobileHeader() {
 function minimizeMobileHeader() {
   const headerMenu = document.getElementsByClassName('user-main-page-header-menu')[0];
   const header = document.getElementsByClassName('user-main-page-header')[0];
+  const expandIcon = document.getElementsByClassName('expand-icon')[0];
+  expandIcon.classList.replace('fa-caret-up', 'fa-caret-down');
   headerMenu.style.height = '30px';
   headerMenu.style.overflow = 'hidden';
 
@@ -101,9 +106,15 @@ function addLinksToHeaderMobile() {
         aboutLink.innerHTML = `<div class="background">
         <span><a href="/users/${userId}/about">About</a></span>
         </div>`;
+        const expandIcon = document.createElement('i');
+        expandIcon.classList.add('fas');
+        expandIcon.classList.add('fa-caret-down');
+        expandIcon.classList.add('expand-icon');
+        expandIcon.style.cssText = 'position: fixed; top: 10px; left: 120px';
         headerMenuList.appendChild(friendRequestLink);
         headerMenuList.appendChild(aboutLink);
         headerMenuList.appendChild(logoutLink);
+        headerMenuList.appendChild(expandIcon);
       }
     });
   }

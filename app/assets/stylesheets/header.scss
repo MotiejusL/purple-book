@@ -160,6 +160,9 @@
             &:hover {
               background-color: rgba(75,0,130,0.35);
               border-radius: 2px;
+              @media screen and (max-width: 426px) {
+                background-color: rgb(110,63,133);
+              }
             }
             @media screen and (max-width: 1440px) {
               padding: 0 12px;
