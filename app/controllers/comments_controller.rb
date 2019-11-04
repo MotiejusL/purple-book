@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     comments.each do |comment|
       comments_time_agos.push(time_ago_in_words(comment.created_at) + " ago")
       user = User.find(comment.user_id)
-      users.push(firstname: user.firstname, lastname: user.lastname, image: user.image, id: user.id);
+      users.push(firstname: user.firstname, lastname: user.lastname, img_path: view_context.image_path(request.user.image), id: user.id);
     end
     render json: {comments: comments, comments_time_agos: comments_time_agos, users: users}
   end

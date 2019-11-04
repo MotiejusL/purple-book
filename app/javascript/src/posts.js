@@ -198,7 +198,7 @@ function createComment(content, user, timeAgo) {
   likeButton.innerHTML = 'Like';
   replyButton.innerHTML = 'Reply';
   createAgo.innerHTML = timeAgo;
-  commentImage.src = `/assets/${user.image}`;
+  commentImage.src = user.img_path;
   commentText.appendChild(userLink);
   commentText.appendChild(commentContent);
   commentFooter.appendChild(likeButton);
