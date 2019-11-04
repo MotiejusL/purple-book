@@ -48,6 +48,9 @@ function addFriendRequestsHeader(friendRequestsContainer) {
   const friendRequestsHeaderLeft = document.createElement('div');
   const friendRequestsHeaderRight = document.createElement('div');
   const linkToAllFriends = document.createElement('a');
+  promiseOfCurrentUser().then((userId) => {
+    linkToAllFriends.href = `/users/${userId}/all_users`;
+  });
   linkToAllFriends.innerHTML = 'Find Friends';
   friendRequestsHeaderRight.appendChild(linkToAllFriends);
   friendRequestsHeaderLeft.innerHTML = 'Friend Requests';
