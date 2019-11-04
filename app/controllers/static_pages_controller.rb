@@ -3,10 +3,12 @@ class StaticPagesController < ApplicationController
   end
 
   def logincheck
-    user = User.find_by_email(params[:email])
-    if user.password == params[:password]
+    user = User.find_by_email(params[:emaillogin])
+    if user != nil && user.password == params[:passwordlogin]
       session[:current_user_id] = user.id
       redirect_to controller: 'users', action: 'show', id: user.id
+    else
+      redirect_to controller: 'static_pages', action: 'main'
     end
   end
 

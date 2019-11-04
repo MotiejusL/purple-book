@@ -8,14 +8,14 @@
         <%= form_tag("/logincheck", method: "get") do %>
         <div class="login-email column-5">
           <div class="login-email-wrapper">
-            <%= label_tag(:email, "Email or Phone") %>
-            <%= text_field_tag(:email) %>
+            <%= label_tag(:emaillogin, "Email or Phone") %>
+            <%= text_field_tag(:emaillogin, "test1@email.com") %>
           </div>
         </div>
         <div class="login-password column-5">
           <div class="login-password-wrapper">
-            <%= label_tag(:password, "Password") %>
-            <%= password_field_tag(:password) %>
+            <%= label_tag(:passwordlogin, "Password") %>
+            <%= password_field_tag(:passwordlogin, "testtest1") %>
           </div>
         </div>
         <div class="login-submit column-2">
