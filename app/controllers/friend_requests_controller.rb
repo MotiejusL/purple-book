@@ -5,7 +5,7 @@ class FriendRequestsController < ApplicationController
     friendRequests = FriendRequest.where(friend_id: params[:id])
     @friendRequestsUsers = []
     friendRequests.each do |request|
-      @friendRequestsUsers.push(requestId: request.id, img: request.user.image, name: request.user.firstname + " " + request.user.lastname, userId: request.user.id)
+      @friendRequestsUsers.push(requestId: request.id, img_path: view_context.image_path(request.user.image), name: request.user.firstname + " " + request.user.lastname, userId: request.user.id)
     end
 
     respond_to do |format|
