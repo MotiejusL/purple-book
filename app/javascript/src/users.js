@@ -13,12 +13,6 @@ function enlargeAndFocus() {
   const createPostFocus = document.getElementsByClassName('main-page-create-post-focus')[0];
   createPostFocus.style.display = 'block';
 
-  const createPostForm = createPostDiv.getElementsByClassName('main-page-create-post-form')[0];
-  createPostDiv.style.borderBottomLeftRadius = '0';
-  createPostDiv.style.borderBottomRightRadius = '0';
-  createPostForm.style.borderBottomLeftRadius = '0';
-  createPostForm.style.borderBottomRightRadius = '0';
-
   const createPostHeader = createPostDiv.getElementsByClassName('main-page-create-post-header')[0];
   const exitButton = document.createElement('button');
   const exitIcon = document.createElement('i');
