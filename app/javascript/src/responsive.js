@@ -9,7 +9,7 @@ expandMobileHeaderOnClick();
 window.addEventListener('resize', clearMobileHeaderToNormal);
 
 function clearMobileHeaderToNormal() {
-  const mobileDevice = window.matchMedia('(max-width: 426px)');
+  const mobileDevice = window.matchMedia('(max-width: 500px)');
   const header = document.getElementsByClassName('user-main-page-header')[0];
   const headerMenuList = document.querySelector('.user-main-page-header-menu ul');
   const searchBar = document.getElementsByClassName('user-main-page-header-search')[0];
@@ -38,7 +38,7 @@ function changeTabletLayoutNewsfeed() {
 }
 
 function changeMobileLayout() {
-  const mobileDevice = window.matchMedia('(max-width: 426px)');
+  const mobileDevice = window.matchMedia('(max-width: 500px)');
 
   if (mobileDevice.matches) {
     resizeMainPageColumnsMobile(mobileDevice);
@@ -50,7 +50,7 @@ function changeMobileLayout() {
 }
 
 function expandMobileHeaderOnClick() {
-  const mobileDevice = window.matchMedia('(max-width: 426px)');
+  const mobileDevice = window.matchMedia('(max-width: 500px)');
   if (mobileDevice.matches) {
     const header = document.getElementsByClassName('user-main-page-header')[0];
     const searchBar = document.getElementsByClassName('user-main-page-header-search')[0];
@@ -91,7 +91,7 @@ function minimizeMobileHeader() {
 }
 
 function addLinksToHeaderMobile() {
-  const mobileDevice = window.matchMedia('(max-width: 426px)');
+  const mobileDevice = window.matchMedia('(max-width: 500px)');
   if (mobileDevice.matches) {
     promiseOfCurrentUser().then((userId) => {
       const headerMenuList = document.querySelector('.user-main-page-header-menu ul');
@@ -122,7 +122,7 @@ function addLinksToHeaderMobile() {
 
 function resizeMainPageColumnsMobile(element) {
   const middleBar = document.getElementsByClassName('user-main-page-middle-bar')[0];
-  const tabletDevice = window.matchMedia('(max-width: 768px)');
+  const tabletDevice = window.matchMedia('(max-width: 950px)');
 
   if (element.matches && middleBar !== undefined) {
     middleBar.classList.replace('column-9', 'column-12');
@@ -152,7 +152,7 @@ function resizeMainPageColumnsTablet(element) {
 }
 
 function changeTabletHeaderLayout() {
-  const tabletDevice = window.matchMedia('(max-width: 768px)');
+  const tabletDevice = window.matchMedia('(max-width: 950px)');
 
   if (tabletDevice.matches) {
     switchHeaderDivs(tabletDevice);
