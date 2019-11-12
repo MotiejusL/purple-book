@@ -50,7 +50,7 @@
         input {
           @include font-size(13);
           width: calc(100% - 46px);
-          height: 28px;
+          height: 26px;
           padding-left: 5px;
           border-top-left-radius: 3px;
           border-bottom-left-radius: 3px;
@@ -61,7 +61,7 @@
         }
         button {
           width: 46px;
-          height: 28px;
+          height: 26px;
           border-top-right-radius: 3px;
           border-bottom-right-radius: 3px;
           border-top: 1px solid #3c1053;
@@ -70,13 +70,14 @@
           border-left: none;
           background-color: rgb(245,246,247);
           margin-left: -4px;
-          padding: 1px 6px;
+          vertical-align: middle;
           &:hover {
             background-color: rgb(237,239,241);
           }
           i {
             color: rgb(75,79,86);
             font-size: 14px;
+            vertical-align: middle;
           }
         }
       }
