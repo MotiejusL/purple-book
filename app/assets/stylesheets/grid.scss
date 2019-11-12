@@ -4,62 +4,74 @@
 
 .column-1 {
   float:left;
-  width: calc(100% / 12 * 1);
+  width: 8.33%;
+  width: calc((100% / 12 * 1) - 0.01px);
 }
 
 .column-2 {
   float:left;
-  width: calc(100% / 12 * 2);
+  width: 16.66%;
+  width: calc((100% / 12 * 2) - 0.01px);
 }
 
 .column-3 {
   float:left;
-  width: calc(100% / 12 * 3)
+  width: 24.99%;
+  width: calc((100% / 12 * 3) - 0.01px);
 }
 
 .column-4 {
   float:left;
-  width: calc(100% / 12 * 4)
+  width: 33.33%;
+  width: calc((100% / 12 * 4) - 0.01px);
 }
 
 .column-5 {
   float:left;
-  width: calc(100% / 12 * 5)
+  width: 41.66%;
+  width: calc((100% / 12 * 5) - 0.01px);
 }
 
 .column-6 {
   float:left;
-  width: calc(100% / 12 * 6)
+  width: 49.99%;
+  width: calc((100% / 12 * 6) - 0.01px);
 }
 
 .column-7 {
   float:left;
-  width: calc(100% / 12 * 7)
+  width: 58.33%;
+  width: calc((100% / 12 * 7) - 0.01px);
 }
 
 .column-8 {
   float:left;
-  width: calc(100% / 12 * 8)
+  width: 66.66%;
+  width: calc((100% / 12 * 8) - 0.01px);
 }
 
 .column-9 {
   float:left;
-  width: calc(100% / 12 * 9)
+  width: 74.99%;
+  width: calc((100% / 12 * 9) - 0.01px);
 }
 
 .column-10 {
   float:left;
-  width: calc(100% / 12 * 10)
+  width: 83.33%;
+  width: calc((100% / 12 * 10) - 0.01px);
 }
 
 .column-11 {
   float:left;
-  width: calc(100% / 12 * 11)
+  width: 91.66%;
+  width: calc((100% / 12 * 11) - 0.01px);
 }
 
 .column-12 {
   float:left;
-  width: calc(100% / 12 * 12)
+  width: 100%;
+  width: calc((100% / 12 * 12) - 0.01px);
 }
 
 .row::after {
