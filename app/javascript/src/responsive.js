@@ -122,7 +122,7 @@ function addLinksToHeaderMobile() {
 
 function resizeMainPageColumnsMobile(element) {
   const middleBar = document.getElementsByClassName('user-main-page-middle-bar')[0];
-  const tabletDevice = window.matchMedia('(max-width: 950px)');
+  const tabletDevice = window.matchMedia('(max-width: 960px)');
 
   if (element.matches && middleBar !== undefined) {
     middleBar.classList.replace('column-9', 'column-12');
@@ -152,7 +152,7 @@ function resizeMainPageColumnsTablet(element) {
 }
 
 function changeTabletHeaderLayout() {
-  const tabletDevice = window.matchMedia('(max-width: 950px)');
+  const tabletDevice = window.matchMedia('(max-width: 960px)');
 
   if (tabletDevice.matches) {
     switchHeaderDivs(tabletDevice);
