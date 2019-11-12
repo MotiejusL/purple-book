@@ -6,7 +6,7 @@
     <div class="main-page-create-post-form">
       <%= form_tag("/users/" + @user.id.to_s + "/posts", method: "post") do %>
       <%= image_tag(@user.image, class: "main-page-create-post-image") %>
-      <%= text_field_tag(:post_text, nil, placeholder: "What's on your mind, " + @user.firstname + "?") %>
+      <%= text_field_tag(:post_text, nil, placeholder: "What's on your mind, " + @user.firstname + "?", required: "required", autocomplete: :off) %>
       <div class="main-page-create-post-footer">
         <div class="main-page-create-post-footer-container">
           <div class="create-post-divider"></div>
