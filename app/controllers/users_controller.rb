@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       session[:current_user_id] = @user.id
       redirect_to controller: 'users', action: 'show', id: @user.id
     else
+      redirect_to controller: 'static_pages', action: 'main'
     end
   end
 
